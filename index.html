@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D&N Açaí BES</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f7f2ff;
+  color: #24152f;
+}
+
+header {
+  background: #5b1688;
+  color: white;
+  text-align: center;
+  padding: 25px 15px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+header p {
+  margin: 8px 0 0;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+  padding: 15px;
+}
+
+h2 {
+  color: #5b1688;
+  margin-top: 25px;
+}
+
+.produto {
+  background: white;
+  border-radius: 15px;
+  padding: 18px;
+  margin: 15px 0;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.produto h3 {
+  margin-top: 0;
+  color: #5b1688;
+}
+
+.tamanhos {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tamanho {
+  border: 2px solid #5b1688;
+  background: white;
+  color: #5b1688;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.tamanho.selecionado {
+  background: #5b1688;
+  color: white;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.adicionar {
+  background: #7b1fa2;
+  color: white;
+  width: 100%;
+  margin-top: 12px;
+}
+
+#pedido {
+  background: white;
+  border-radius: 15px;
+  padding: 18px;
+  margin-top: 25px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+#listaPedido {
+  white-space: pre-line;
+}
+
+.total {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+.whatsapp {
+  background: #25D366;
+  color: white;
+  width: 100%;
+  font-size: 17px;
+}
+
+.limpar {
+  background: #ddd;
+  width: 100%;
+  margin-top: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🍇 D&N Açaí BES</h1>
+  <p>Monte seu pedido e peça pelo WhatsApp</p>
+</header>
+
+<div class="container">
+
+<h2>🍧 Nossos Copos</h2>
+
+<div class="produto">
+  <h3>Copo Trufado com Nutella</h3>
+  <p>Açaí no meio, trufado/Nutella e frutas à sua escolha.</p>
+
+  <div class="tamanhos">
+    <button class="tamanho" onclick="selecionar(this, 'Copo Trufado com Nutella', 28)">300 ml — R$28</button>
+    <button class="tamanho" onclick="selecionar(this, 'Copo Trufado com Nutella', 33)">400 ml — R$33</button>
+    <button class="tamanho" onclick="selecionar(this, 'Copo Trufado com Nutella', 41)">500 ml — R$41</button>
+  </div>
+</div>
+
+<div class="produto">
+  <h3>Copo Moranguete</h3>
+  <p>Creme de morango de um lado, creme de Nutella do outro e açaí no meio.</p>
+
+  <div class="tamanhos">
+    <button class="tamanho" onclick="selecionar(this, 'Copo Moranguete', 28)">300 ml — R$28</button>
+    <button class="tamanho" onclick="selecionar(this, 'Copo Moranguete', 36)">400 ml — R$36</button>
+    <button class="tamanho" onclick="selecionar(this, 'Copo Moranguete', 42)">500 ml — R$42</button>
+  </div>
+</div>
+
+<div class="produto">
+  <h3>Copo Dois Amores</h3>
+  <p>Açaí ou sorvete, creme de Ninho original, Nutella pura, leite condensado e Ninho em pó.</p>
+
+  <div class="tamanhos">
+    <button class="tamanho" onclick="selecionar(this, 'Copo Dois Amores', 28)">300 ml — R$28</button>
+    <button class="tamanho" onclick="selecionar(this, 'Copo Dois Amores', 36)">400 ml — R$36</button>
+    <button class="tamanho" onclick="selecionar(this, 'Copo Dois Amores', 42)">500 ml — R$42</button>
+  </div>
+</div>
+
+<div class="produto">
+  <h3>Copo Napolitano</h3>
+  <p>Açaí ou sorvete, leite condensado, Ninho em pó, creme Leitinho, chocolate e morango.</p>
+
+  <div class="tamanhos">
+    <button class="tamanho" onclick="selecionar(this, 'Copo Napolitano', 25)">300 ml — R$25</button>
+    <button class="tamanho" onclick="selecionar(this, 'Copo Napolitano', 30)">400 ml — R$30</button>
+    <button class="tamanho" onclick="selecionar(this, 'Copo Napolitano', 38)">500 ml — R$38</button>
+  </div>
+</div>
+
+<div class="produto">
+  <h3>Copo Wafer</h3>
+  <p>Açaí ou sorvete, Ninho em pó, creme de wafer e morango.</p>
+
+  <div class="tamanhos">
+    <button class="tamanho" onclick="selecionar(this, 'Copo Wafer', 23)">300 ml — R$23</button>
+    <button class="tamanho" onclick="selecionar(this, 'Copo Wafer', 28)">400 ml — R$28</button>
+    <button class="tamanho" onclick="selecionar(this, 'Copo Wafer', 35)">500 ml — R$35</button>
+  </div>
+</div>
+
+<div class="produto">
+  <h3>Copo Tradicional</h3>
+
+  <div class="tamanhos">
+    <button class="tamanho" onclick="selecionar(this, 'Copo Tradicional', 23)">300 ml — R$23</button>
+    <button class="tamanho" onclick="selecionar(this, 'Copo Tradicional', 28)">400 ml — R$28</button>
+    <button class="tamanho" onclick="selecionar(this, 'Copo Tradicional', 35)">500 ml — R$35</button>
+  </div>
+</div>
+
+<div class="produto">
+  <h3>Copo Tropical</h3>
+
+  <div class="tamanhos">
+    <button class="tamanho" onclick="selecionar(this, 'Copo Tropical', 28)">300 ml — R$28</button>
+    <button class="tamanho" onclick="selecionar(this, 'Copo Tropical', 33)">400 ml — R$33</button>
+    <button class="tamanho" onclick="selecionar(this, 'Copo Tropical', 38)">500 ml — R$38</button>
+  </div>
+</div>
+
+<div class="produto">
+  <h3>Copo Vulcão</h3>
+
+  <div class="tamanhos">
+    <button class="tamanho" onclick="selecionar(this, 'Copo Vulcão', 23)">300 ml — R$23</button>
+    <button class="tamanho" onclick="selecionar(this, 'Copo Vulcão', 28)">400 ml — R$28</button>
+    <button class="tamanho" onclick="selecionar(this, 'Copo Vulcão', 35)">500 ml — R$35</button>
+  </div>
+</div>
+
+<div class="produto">
+  <h3>Batidinha de Açaí</h3>
+
+  <div class="tamanhos">
+    <button class="tamanho" onclick="selecionar(this, 'Batidinha de Açaí', 14)">300 ml — R$14</button>
+    <button class="tamanho" onclick="selecionar(this, 'Batidinha de Açaí', 16)">400 ml — R$16</button>
+    <button class="tamanho" onclick="selecionar(this, 'Batidinha de Açaí', 18)">500 ml — R$18</button>
+    <button class="tamanho" onclick="selecionar(this, 'Batidinha de Açaí', 21)">780 ml — R$21</button>
+  </div>
+</div>
+
+<div class="produto">
+  <h3>Milk-Shake</h3>
+
+  <div class="tamanhos">
+    <button class="tamanho" onclick="selecionar(this, 'Milk-Shake', 14)">300 ml — R$14</button>
+    <button class="tamanho" onclick="selecionar(this, 'Milk-Shake', 16)">400 ml — R$16</button>
+    <button class="tamanho" onclick="selecionar(this, 'Milk-Shake', 18)">500 ml — R$18</button>
+    <button class="tamanho" onclick="selecionar(this, 'Milk-Shake', 22)">770 ml — R$22</button>
+  </div>
+</div>
+
+<div id="pedido">
+  <h2>🛒 Seu pedido</h2>
+
+  <div id="listaPedido">
+    Nenhum item adicionado.
+  </div>
+
+  <div class="total">
+    Total: R$ <span id="total">0,00</span>
+  </div>
+
+  <button class="whatsapp" onclick="enviarWhatsApp()">
+    📱 Enviar pedido pelo WhatsApp
+  </button>
+
+  <button class="limpar" onclick="limparPedido()">
+    Limpar pedido
+  </button>
+</div>
+
+</div>
+
+<script>
+
+let pedido = [];
+let total = 0;
+
+function selecionar(botao, produto, preco) {
+
+  let botoes = botao.parentElement.querySelectorAll(".tamanho");
+
+  botoes.forEach(function(b) {
+    b.classList.remove("selecionado");
+  });
+
+  botao.classList.add("selecionado");
+
+  let tamanho = botao.innerText.split("—")[0].trim();
+
+  pedido.push({
+    produto: produto,
+    tamanho: tamanho,
+    preco: preco
+  });
+
+  total += preco;
+
+  atualizarPedido();
+}
+
+function atualizarPedido() {
+
+  let lista = document.getElementById("listaPedido");
+
+  if (pedido.length === 0) {
+    lista.innerText = "Nenhum item adicionado.";
+    return;
+  }
+
+  let texto = "";
+
+  pedido.forEach(function(item, index) {
+    texto += (index + 1) + ". " + item.produto +
+      " - " + item.tamanho +
+      " - R$" + item.preco.toFixed(2).replace(".", ",") +
+      "\n";
+  });
+
+  lista.innerText = texto;
+
+  document.getElementById("total").innerText =
+    total.toFixed(2).replace(".", ",");
+}
+
+function limparPedido() {
+  pedido = [];
+  total = 0;
+
+  document.querySelectorAll(".tamanho").forEach(function(botao) {
+    botao.classList.remove("selecionado");
+  });
+
+  atualizarPedido();
+
+  document.getElementById("total").innerText = "0,00";
+}
+
+function enviarWhatsApp() {
+
+  if (pedido.length === 0) {
+    alert("Adicione pelo menos um produto ao pedido.");
+    return;
+  }
+
+  let mensagem = "Olá! Quero fazer um pedido na D&N Açaí BES 🍇\n\n";
+
+  pedido.forEach(function(item, index) {
+    mensagem +=
+      (index + 1) + ". " +
+      item.produto + " - " +
+      item.tamanho + " - R$" +
+      item.preco.toFixed(2).replace(".", ",") +
+      "\n";
+  });
+
+  mensagem += "\nTotal: R$" +
