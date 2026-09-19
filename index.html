@@ -4,11 +4,159 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>D&N Açaí BES</title>
-
 <style>
 * {
   box-sizing: border-box;
 }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5effa;
+  color: #24152f;
+}
+
+header {
+  background: linear-gradient(135deg, #4b0870, #8e24aa);
+  color: white;
+  text-align: center;
+  padding: 35px 18px;
+  border-radius: 0 0 28px 28px;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.18);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+header p {
+  margin: 10px 0 0;
+  font-size: 16px;
+  opacity: 0.95;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+  padding: 18px;
+}
+
+h2 {
+  color: #5b1688;
+  margin-top: 28px;
+}
+
+.produto {
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 18px 0;
+  box-shadow: 0 5px 18px rgba(70,20,90,0.10);
+  border: 1px solid #eadcf2;
+}
+
+.produto h3 {
+  margin-top: 0;
+  color: #5b1688;
+  font-size: 21px;
+}
+
+.produto p {
+  line-height: 1.5;
+  color: #5f5265;
+}
+
+.tamanhos {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+
+.tamanho {
+  border: 2px solid #7b1fa2;
+  background: white;
+  color: #6a1b9a;
+  border-radius: 12px;
+  padding: 11px 13px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.tamanho:active {
+  transform: scale(0.97);
+}
+
+.tamanho.selecionado {
+  background: #7b1fa2;
+  color: white;
+}
+
+#pedido {
+  background: linear-gradient(180deg, #ffffff, #faf5fd);
+  border-radius: 22px;
+  padding: 20px;
+  margin-top: 28px;
+  box-shadow: 0 6px 20px rgba(70,20,90,0.14);
+  border: 2px solid #eadcf2;
+}
+
+#listaPedido {
+  white-space: pre-line;
+  line-height: 1.6;
+  color: #403448;
+}
+
+.total {
+  font-size: 23px;
+  font-weight: bold;
+  margin: 18px 0;
+  color: #4b0870;
+}
+
+button {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.whatsapp {
+  background: #25D366;
+  color: white;
+  width: 100%;
+  font-size: 17px;
+  padding: 15px;
+}
+
+.limpar {
+  background: #e4e0e5;
+  color: #44394a;
+  width: 100%;
+  margin-top: 9px;
+}
+
+@media (max-width: 500px) {
+  header h1 {
+    font-size: 27px;
+  }
+
+  .container {
+    padding: 12px;
+  }
+
+  .produto {
+    padding: 17px;
+  }
+
+  .tamanho {
+    flex: 1;
+    min-width: 100px;
+  }
+}
+  </style>
+
 
 body {
   margin: 0;
