@@ -1,1066 +1,361 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>D&N Açaí BES</title>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#5b138c">
+<meta name="description" content="Cardápio online D&N Açaí BES. Monte seu pedido e envie pelo WhatsApp.">
+<title>D&N Açaí BES — Cardápio</title>
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f7f3ff;
-  color:#241633;
-}
-
-header{
-  background:linear-gradient(135deg,#35105f,#7416a8,#d92c91);
-  color:white;
-  padding:32px 18px 42px;
-  text-align:center;
-  border-radius:0 0 30px 30px;
-  box-shadow:0 8px 25px rgba(80,20,120,.25);
-}
-
-.logo{
-  font-size:34px;
-  font-weight:900;
-}
-
-.subtitle{
-  margin-top:8px;
-  font-size:15px;
-  opacity:.9;
-}
-
-.info{
-  margin-top:18px;
-  font-size:13px;
-  line-height:1.6;
-}
-
-.container{
-  width:min(1100px,94%);
-  margin:25px auto 110px;
-}
-
-.categories{
-  display:flex;
-  gap:10px;
-  overflow-x:auto;
-  padding-bottom:8px;
-  margin-bottom:22px;
-}
-
-.categories button{
-  border:0;
-  padding:11px 18px;
-  border-radius:30px;
-  background:white;
-  color:#5d267b;
-  font-weight:bold;
-  box-shadow:0 4px 14px rgba(0,0,0,.08);
-  white-space:nowrap;
-  cursor:pointer;
-}
-
-.categories button.active{
-  background:#68189a;
-  color:white;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:18px;
-}
-
-.card{
-  background:white;
-  border-radius:22px;
-  padding:20px;
-  box-shadow:0 7px 25px rgba(50,20,70,.09);
-  border:1px solid #eee4f6;
-  transition:.2s;
-}
-
-.card:hover{
-  transform:translateY(-3px);
-}
-
-.card h2{
-  font-size:20px;
-  margin-bottom:8px;
-}
-
-.description{
-  color:#71677a;
-  font-size:13px;
-  line-height:1.5;
-  min-height:58px;
-}
-
-.price{
-  color:#68189a;
-  font-size:15px;
-  font-weight:bold;
-  margin:14px 0;
-}
-
-.card button{
-  width:100%;
-  border:0;
-  padding:13px;
-  border-radius:13px;
-  background:linear-gradient(135deg,#68189a,#a421b7);
-  color:white;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.modal-bg{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(15,5,20,.7);
-  z-index:1000;
-  padding:18px;
-  overflow:auto;
-}
-
-.modal{
-  background:white;
-  max-width:520px;
-  margin:30px auto;
-  border-radius:25px;
-  padding:24px;
-  position:relative;
-}
-
-.close{
-  position:absolute;
-  right:17px;
-  top:14px;
-  border:0;
-  background:#eee;
-  width:34px;
-  height:34px;
-  border-radius:50%;
-  cursor:pointer;
-  font-size:18px;
-}
-
-.modal h2{
-  padding-right:45px;
-  margin-bottom:8px;
-}
-
-.modal-description{
-  color:#766b80;
-  font-size:13px;
-  line-height:1.5;
-  margin-bottom:20px;
-}
-
-.option-title{
-  font-size:14px;
-  font-weight:bold;
-  margin:18px 0 9px;
-}
-
-.options{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:9px;
-}
-
-.option{
-  border:1px solid #ddd;
-  background:#fff;
-  padding:11px;
-  border-radius:12px;
-  cursor:pointer;
-  text-align:left;
-}
-
-.option.selected{
-  border-color:#7416a8;
-  background:#f4e8fb;
-  color:#5d167c;
-  font-weight:bold;
-}
-
-.addon{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:13px;
-  border:1px solid #ddd;
-  border-radius:13px;
-  margin-top:8px;
-  cursor:pointer;
-}
-
-.addon input{
-  width:18px;
-  height:18px;
-}
-
-.total-modal{
-  margin-top:22px;
-  padding:15px;
-  background:#f6effb;
-  border-radius:15px;
-  display:flex;
-  justify-content:space-between;
-  font-weight:bold;
-}
-
-.confirm{
-  width:100%;
-  margin-top:14px;
-  border:0;
-  padding:15px;
-  border-radius:14px;
-  background:#25d366;
-  color:white;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.cart{
-  position:fixed;
-  right:18px;
-  bottom:18px;
-  z-index:900;
-  border:0;
-  background:#68189a;
-  color:white;
-  padding:15px 20px;
-  border-radius:40px;
-  box-shadow:0 8px 25px rgba(60,10,90,.3);
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.cart-count{
-  background:#ff3c91;
-  padding:3px 7px;
-  border-radius:20px;
-  margin-left:5px;
-}
-
-.cart-box{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(15,5,20,.7);
-  z-index:1100;
-  padding:18px;
-  overflow:auto;
-}
-
-.cart-content{
-  max-width:520px;
-  margin:30px auto;
-  background:white;
-  border-radius:25px;
-  padding:24px;
-}
-
-.cart-item{
-  padding:15px 0;
-  border-bottom:1px solid #eee;
-}
-
-.cart-item strong{
-  display:block;
-  margin-bottom:5px;
-}
-
-.details{
-  color:#766b80;
-  font-size:12px;
-  line-height:1.5;
-}
-
-.item-actions{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin-top:9px;
-}
-
-.item-actions button{
-  border:0;
-  background:#eee;
-  width:30px;
-  height:30px;
-  border-radius:8px;
-  cursor:pointer;
-}
-
-.cart-total{
-  margin-top:20px;
-  font-size:19px;
-  font-weight:bold;
-  display:flex;
-  justify-content:space-between;
-}
-
-.whatsapp{
-  width:100%;
-  border:0;
-  padding:15px;
-  margin-top:15px;
-  background:#25d366;
-  color:white;
-  border-radius:14px;
-  font-weight:bold;
-  font-size:16px;
-  cursor:pointer;
-}
-
-.empty{
-  text-align:center;
-  color:#777;
-  padding:30px 0;
-}
-
-@media(max-width:500px){
-  .logo{
-    font-size:29px;
-  }
-
-  .grid{
-    grid-template-columns:1fr;
-  }
-
-  .options{
-    grid-template-columns:1fr;
-  }
-}
+:root{--p:#5b138c;--p2:#8d27b9;--pink:#ed3c91;--bg:#f7f4fa;--ink:#25162e;--muted:#756b7d;--line:#eadff0;--green:#20c76a;--white:#fff;--shadow:0 12px 34px rgba(57,15,77,.10)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);padding-bottom:92px}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.top{background:#321054;color:#fff;text-align:center;padding:8px 12px;font-size:12px}
+header{color:#fff;text-align:center;padding:28px 18px 34px;border-radius:0 0 30px 30px;background:radial-gradient(circle at 10% 10%,rgba(255,255,255,.17),transparent 25%),radial-gradient(circle at 90% 0,rgba(255,70,170,.28),transparent 30%),linear-gradient(135deg,#35105f,#7416a8 55%,#d92c91);box-shadow:0 8px 28px rgba(80,20,120,.25)}
+.logo{font-size:31px;font-weight:950}.subtitle{margin:7px 0 15px;font-size:14px;opacity:.93}
+.status{display:inline-flex;gap:7px;align-items:center;background:rgba(255,255,255,.14);padding:8px 12px;border-radius:30px;font-size:12px}
+.dot{width:9px;height:9px;border-radius:50%;background:#39f58b;box-shadow:0 0 0 4px rgba(57,245,139,.15)}
+.wrap{width:min(1080px,94%);margin:auto}
+.hero{margin:-5px auto 0;width:min(1080px,94%);display:grid;grid-template-columns:1.35fr .65fr;gap:14px;padding:18px}
+.hero>div{border-radius:24px;padding:22px;box-shadow:var(--shadow)}
+.hero-main{background:linear-gradient(135deg,#fff,#f3e7fb)}
+.hero-main h1{font-size:28px;line-height:1.08;margin-bottom:8px}
+.hero-main p,.promo span{font-size:13px;line-height:1.55;color:var(--muted)}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
+.primary,.secondary{border:0;border-radius:13px;padding:12px 15px;font-weight:900}
+.primary{background:var(--p);color:#fff}.secondary{background:#fff;color:var(--p);border:1px solid var(--line)}
+.promo{background:linear-gradient(135deg,#fff1fa,#f0e7ff)}.promo strong{display:block;font-size:20px;margin-bottom:6px}
+.tools{position:sticky;top:0;z-index:50;background:rgba(247,244,250,.94);backdrop-filter:blur(12px);padding:10px 0}
+.search{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:15px;padding:11px 13px;box-shadow:0 4px 14px rgba(0,0,0,.04)}
+.search input{border:0;outline:0;width:100%;background:transparent}
+.cats{display:flex;gap:8px;overflow:auto;padding:9px 0 3px}
+.cats button{flex:0 0 auto;border:1px solid var(--line);background:#fff;color:#5d267b;padding:9px 14px;border-radius:30px;font-weight:900}
+.cats button.active{background:var(--p);color:#fff;border-color:var(--p)}
+.heading{display:flex;justify-content:space-between;align-items:end;margin:17px 0 11px}.heading h2{font-size:22px}.heading span{font-size:12px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow);transition:.18s}
+.card:hover{transform:translateY(-2px)}
+.visual{height:145px;display:flex;align-items:center;justify-content:center;font-size:67px;background:linear-gradient(135deg,#f2e3fb,#ffe8f3);position:relative}
+.badge{position:absolute;top:10px;left:10px;background:#fff;color:#6b188e;padding:6px 9px;border-radius:30px;font-size:10px;font-weight:900}
+.fav{position:absolute;top:10px;right:10px;border:0;background:rgba(255,255,255,.92);width:34px;height:34px;border-radius:50%;font-size:18px}
+.body{padding:16px}.body h3{font-size:18px;margin-bottom:6px}.desc{font-size:12px;line-height:1.5;color:var(--muted);min-height:55px}
+.price{color:var(--p);font-size:13px;font-weight:950;margin:11px 0}.card-actions{display:flex;gap:8px}.card-actions button{flex:1;border:0;border-radius:12px;padding:11px;font-weight:900}.choose{background:var(--p);color:#fff}.plus{background:#f2e8f8;color:var(--p)}
+.info{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:27px 0}.ibox{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px}.ibox b{display:block;margin-bottom:5px}.ibox span{font-size:12px;color:var(--muted);line-height:1.5}
+footer{background:#2d123a;color:#fff;text-align:center;padding:27px 18px;margin-top:32px}footer p{font-size:12px;opacity:.75;margin-top:6px}
+.floating{position:fixed;z-index:80;left:50%;bottom:15px;transform:translateX(-50%);width:min(500px,calc(100% - 26px));border:0;border-radius:18px;padding:15px 17px;background:linear-gradient(135deg,#5b138c,#a525b9);color:#fff;display:flex;justify-content:space-between;align-items:center;box-shadow:0 12px 35px rgba(65,10,90,.35)}
+.cartlabel{display:flex;gap:9px;align-items:center}.count{background:#ff4b99;padding:4px 8px;border-radius:20px;font-size:12px}
+.overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(15,5,20,.72);padding:12px;overflow:auto}
+.modal{width:min(570px,100%);margin:18px auto;background:#fff;border-radius:26px;padding:22px;position:relative}
+.close{position:absolute;right:14px;top:13px;border:0;background:#eee;width:35px;height:35px;border-radius:50%;font-size:20px}
+.modal h2{padding-right:45px;margin-bottom:5px}.modal-desc{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:14px}
+.opt-title{font-size:13px;font-weight:950;margin:17px 0 8px}.options{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.option{border:1px solid #ddd;background:#fff;padding:11px;border-radius:12px;text-align:left}.option.selected{border-color:#7416a8;background:#f4e8fb;color:#5d167c;font-weight:900}
+.addon{display:flex;align-items:center;gap:10px;border:1px solid #ddd;border-radius:12px;padding:12px;margin-top:8px}.addon input{width:18px;height:18px}
+.total{margin-top:18px;background:#f6effb;padding:14px;border-radius:14px;display:flex;justify-content:space-between;font-weight:950}
+.confirm,.checkout{width:100%;border:0;background:var(--green);color:#fff;border-radius:14px;padding:14px;margin-top:11px;font-weight:950}
+.cart-modal{width:min(600px,100%);margin:10px auto;background:#fff;border-radius:26px;padding:22px;position:relative}
+.item{padding:14px 0;border-bottom:1px solid #eee}.item strong{display:block;margin-bottom:5px}.details{font-size:12px;color:var(--muted);line-height:1.55}
+.item-row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:9px}.item-buttons{display:flex;gap:6px}.small{border:0;border-radius:8px;padding:7px 9px}.remove{background:#ffe8ec;color:#a11}.edit{background:#f2e8f8;color:var(--p)}
+.cart-total{display:flex;justify-content:space-between;font-size:19px;font-weight:950;margin-top:18px}
+.checkout-area{border-top:1px solid var(--line);margin-top:18px;padding-top:17px}.field{margin-top:10px}.field label{display:block;font-size:12px;font-weight:900;margin-bottom:5px}.field input,.field textarea,.field select{width:100%;border:1px solid #ddd;border-radius:11px;padding:11px;outline:0;background:#fff}.field textarea{min-height:70px;resize:vertical}
+.delivery-choice{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}.choice{border:1px solid #ddd;background:#fff;border-radius:11px;padding:11px;font-weight:900}.choice.selected{border-color:#7416a8;background:#f4e8fb;color:#5d167c}
+.note{font-size:11px;color:var(--muted);line-height:1.45;margin-top:8px}.empty{text-align:center;padding:32px;color:var(--muted)}
+.toast{position:fixed;z-index:2000;left:50%;top:17px;transform:translate(-50%,-18px);opacity:0;background:#24152d;color:#fff;padding:12px 15px;border-radius:13px;font-size:13px;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.info{grid-template-columns:1fr}.logo{font-size:28px}.hero-main h1{font-size:24px}.visual{height:155px}}
 </style>
 </head>
-
 <body>
-
+<div class="top">💜 Cardápio online • Pedido direto pelo WhatsApp • Sem aplicativo</div>
 <header>
   <div class="logo">🍇 D&N Açaí BES</div>
   <div class="subtitle">Seu momento doce começa aqui 💜</div>
-
-  <div class="info">
-    📍 Rua Expedicionário Mário Fernandes, 57<br>
-    🚚 Delivery disponível<br>
-    📲 Faça seu pedido pelo WhatsApp
-  </div>
+  <div class="status"><span class="dot"></span><span id="status">Verificando atendimento...</span></div>
 </header>
 
-<div class="container">
+<section class="hero">
+  <div class="hero-main">
+    <h1>Monte seu pedido do seu jeito.</h1>
+    <p>Escolha tamanho, base, frutas, cremes e complementos. Depois revise tudo e envie o pedido organizado direto para o WhatsApp.</p>
+    <div class="actions">
+      <button class="primary" onclick="document.getElementById('menu').scrollIntoView()">🍨 Ver cardápio</button>
+      <button class="secondary" onclick="openCart()">🛒 Meu carrinho</button>
+    </div>
+  </div>
+  <div class="promo"><strong>⚡ Pedido rápido</strong><span>Sem cadastro. Você monta o pedido, informa entrega ou retirada e confirma pelo WhatsApp.</span></div>
+</section>
 
-  <div class="categories">
-    <button class="active" onclick="filtrar('todos',this)">Todos</button>
-    <button onclick="filtrar('acai',this)">Açaí</button>
-    <button onclick="filtrar('milk',this)">Milk-Shake</button>
+<main class="wrap" id="menu">
+  <div class="tools">
+    <div class="search">🔎 <input id="search" oninput="render()" placeholder="Buscar açaí, Kinder, Milk-Shake..."></div>
+    <div class="cats">
+      <button class="active" onclick="filterCat('todos',this)">Todos</button>
+      <button onclick="filterCat('acai',this)">🍇 Açaí</button>
+      <button onclick="filterCat('milk',this)">🥤 Milk-Shake</button>
+      <button onclick="filterCat('favoritos',this)">❤️ Favoritos</button>
+    </div>
   </div>
 
-  <div class="grid" id="produtos"></div>
+  <div class="heading"><h2>Nosso cardápio</h2><span id="result"></span></div>
+  <div class="grid" id="products"></div>
 
-</div>
+  <div class="info">
+    <div class="ibox"><b>🚚 Delivery</b><span>Entrega disponível. A taxa pode ser confirmada no atendimento.</span></div>
+    <div class="ibox"><b>📲 WhatsApp</b><span>Pedido enviado já organizado, com todos os detalhes.</span></div>
+    <div class="ibox"><b>💜 Do seu jeito</b><span>Escolha tamanho, base, frutas, cremes e complementos.</span></div>
+  </div>
+</main>
 
-<button class="cart" onclick="abrirCarrinho()">
-  🛒 Carrinho
-  <span class="cart-count" id="contador">0</span>
+<footer>
+  <b>🍇 D&N Açaí BES</b>
+  <p>Rua Expedicionário Mário Fernandes, 57</p>
+  <p>Pedidos pelo WhatsApp • Açaí & Milk-Shake</p>
+</footer>
+
+<button class="floating" onclick="openCart()">
+  <span class="cartlabel">🛒 Meu carrinho <span class="count" id="count">0</span></span>
+  <strong id="miniTotal">R$ 0,00</strong>
 </button>
 
-<!-- MODAL PRODUTO -->
-
-<div class="modal-bg" id="modalBg">
+<div class="overlay" id="productOverlay" onclick="if(event.target===this)closeProduct()">
   <div class="modal">
-
-    <button class="close" onclick="fecharModal()">×</button>
-
-    <h2 id="modalTitulo"></h2>
-    <div class="modal-description" id="modalDescricao"></div>
-
-    <div id="configuracao"></div>
-
-    <div class="total-modal">
-      <span>Total</span>
-      <span id="modalPreco">R$ 0,00</span>
-    </div>
-
-    <button class="confirm" onclick="adicionarCarrinho()">
-      🛒 Adicionar ao carrinho
-    </button>
-
+    <button class="close" onclick="closeProduct()">×</button>
+    <h2 id="modalTitle"></h2>
+    <div class="modal-desc" id="modalDesc"></div>
+    <div id="config"></div>
+    <div class="total"><span>Total</span><span id="modalPrice">R$ 0,00</span></div>
+    <button class="confirm" onclick="addCart()">Adicionar ao carrinho 🛒</button>
   </div>
 </div>
 
-<!-- CARRINHO -->
-
-<div class="cart-box" id="cartBox">
-
-  <div class="cart-content">
-
-    <button class="close" onclick="fecharCarrinho()">×</button>
-
+<div class="overlay" id="cartOverlay" onclick="if(event.target===this)closeCart()">
+  <div class="cart-modal">
+    <button class="close" onclick="closeCart()">×</button>
     <h2>🛒 Seu pedido</h2>
+    <div id="cartList"></div>
+    <div class="cart-total"><span>Total</span><span id="cartTotal">R$ 0,00</span></div>
 
-    <div id="listaCarrinho"></div>
+    <div class="checkout-area">
+      <h3>Finalizar pedido</h3>
 
-    <div class="cart-total">
-      <span>Total</span>
-      <span id="totalCarrinho">R$ 0,00</span>
+      <div class="field">
+        <label>Seu nome</label>
+        <input id="name" placeholder="Como podemos te chamar?">
+      </div>
+
+      <div class="field">
+        <label>Recebimento</label>
+        <div class="delivery-choice">
+          <button class="choice selected" id="delivery" onclick="setDelivery('Delivery')">🚚 Delivery</button>
+          <button class="choice" id="pickup" onclick="setDelivery('Retirada')">🏪 Retirada</button>
+        </div>
+      </div>
+
+      <div id="addressArea">
+        <div class="field">
+          <label>Endereço</label>
+          <input id="address" placeholder="Rua, número, bairro...">
+        </div>
+        <div class="field">
+          <label>Referência</label>
+          <input id="reference" placeholder="Ex.: perto da praça">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Forma de pagamento</label>
+        <select id="payment">
+          <option value="">Selecione</option>
+          <option>Pix</option>
+          <option>Dinheiro</option>
+          <option>Cartão</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Observação</label>
+        <textarea id="obs" placeholder="Alguma observação para o pedido?"></textarea>
+      </div>
+
+      <div class="note">Ao confirmar, o WhatsApp será aberto com seu pedido pronto para enviar.</div>
+      <button class="checkout" onclick="sendWhatsApp()">📲 Enviar pedido pelo WhatsApp</button>
     </div>
-
-    <button class="whatsapp" onclick="enviarWhatsApp()">
-      📲 Enviar pedido pelo WhatsApp
-    </button>
-
   </div>
-
 </div>
+
+<div class="toast" id="toast"></div>
 
 <script>
+const WHATSAPP="5516996194221";
 
-const WHATSAPP = "5516996194221";
-
-const produtos = [
-
-{
- nome:"Trufado de Paçoquinha",
- categoria:"acai",
- descricao:"Açaí ou sorvete, trufado de Nutella, pasta de amendoim, leite condensado e paçoca.",
- precos:{300:28,400:33,500:41}
-},
-
-{
- nome:"Kinder Bueno White",
- categoria:"acai",
- descricao:"Açaí ou sorvete, creme de Ninho Original, Nutella pura, Kinder Bueno White, leite condensado e Ninho em pó.",
- precos:{300:34,400:43,500:58}
-},
-
-{
- nome:"Copo Tropical",
- categoria:"acai",
- descricao:"Açaí ou sorvete, leite condensado, Ninho em pó, Nutella pura, morango, banana e uvas verdes.",
- precos:{300:28,400:33,500:38}
-},
-
-{
- nome:"Copo Tradicional",
- categoria:"acai",
- descricao:"Açaí ou sorvete, Nutella, leite condensado, fruta, Ninho em pó e granola ou amendoim.",
- precos:{300:23,400:28,500:35},
- frutas:true,
- granola:true
-},
-
-{
- nome:"Oreotella",
- categoria:"acai",
- descricao:"Açaí ou sorvete, trufado de Nutella, leite condensado, Ninho em pó, Oreo, Bis e Biju.",
- precos:{400:43,500:58}
-},
-
-{
- nome:"Copo Paçoquinha",
- categoria:"acai",
- descricao:"Açaí ou sorvete, paçoquinha, leite condensado e pasta de amendoim.",
- precos:{300:23,400:28,500:35}
-},
-
-{
- nome:"Batidinha de Açaí",
- categoria:"acai",
- descricao:"Açaí batido com leite condensado. Escolha Ninho em pó ou Paçoca.",
- precos:{300:14,400:16,500:18,780:21},
- batidinha:true
-},
-
-{
- nome:"Trufado Flocos Ovomaltine",
- categoria:"acai",
- descricao:"Açaí ou sorvete, trufado de Nutella, flocos de Ovomaltine, bombom Ouro Branco, leite condensado e Ninho em pó.",
- precos:{300:28,400:33,500:41}
-},
-
-{
- nome:"Copo Trufado",
- categoria:"acai",
- descricao:"Açaí ou sorvete, trufado de Nutella, Ninho em pó, granola ou amendoim, fruta e leite condensado.",
- precos:{300:28,400:33,500:41},
- frutas:true,
- granola:true
-},
-
-{
- nome:"Dois Amores",
- categoria:"acai",
- descricao:"Açaí ou sorvete, creme de Ninho Original, Nutella pura, leite condensado e Ninho em pó.",
- precos:{300:28,400:36,500:42}
-},
-
-{
- nome:"Copo Vulcão",
- categoria:"acai",
- descricao:"Açaí ou sorvete, leite condensado, Ninho em pó e fruta.",
- precos:{300:23,400:28,500:35},
- frutas:true
-},
-
-{
- nome:"Copo Napolitano",
- categoria:"acai",
- descricao:"Açaí ou sorvete, leite condensado, Ninho em pó, creme Leitinho, creme de chocolate e creme de morango.",
- precos:{300:25,400:30,500:38}
-},
-
-{
- nome:"Copo Wafer",
- categoria:"acai",
- descricao:"Açaí ou sorvete, Ninho em pó, creme de wafer e morango.",
- precos:{300:23,400:28,500:35}
-},
-
-{
- nome:"Copo 200ml",
- categoria:"acai",
- descricao:"Açaí ou sorvete, Ninho em pó, leite condensado, 1 creme e 1 fruta à escolha.",
- precos:{200:18},
- copo200:true
-},
-
-{
- nome:"Copo Moranguete",
- categoria:"acai",
- descricao:"Creme de morango de um lado, creme de Nutella do outro e açaí no meio.",
- precos:{300:28,400:36,500:42}
-},
-
-{
- nome:"Milk-Shake",
- categoria:"milk",
- descricao:"Escolha seu sabor e tamanho.",
- precos:{300:14,400:16,500:18,770:22},
- milk:true
-}
-
+const products=[
+{n:"Trufado de Paçoquinha",c:"acai",e:"🥜",b:"Mais pedido",d:"Açaí ou sorvete, trufado de Nutella, pasta de amendoim, leite condensado e paçoca.",p:{300:28,400:33,500:41}},
+{n:"Kinder Bueno White",c:"acai",e:"🍫",b:"Premium",d:"Açaí ou sorvete, creme de Ninho Original, Nutella pura, Kinder Bueno White, leite condensado e Ninho em pó.",p:{300:34,400:43,500:58}},
+{n:"Copo Tropical",c:"acai",e:"🍓",b:"Tropical",d:"Açaí ou sorvete, leite condensado, Ninho em pó, Nutella pura, morango, banana e uvas verdes.",p:{300:28,400:33,500:38}},
+{n:"Copo Tradicional",c:"acai",e:"🍇",b:"Clássico",d:"Açaí ou sorvete, Nutella, leite condensado, fruta, Ninho em pó, granola ou amendoim.",p:{300:23,400:28,500:35},fr:true,gr:true},
+{n:"Oreotella",c:"acai",e:"🍪",b:"Crocante",d:"Açaí ou sorvete, trufado de Nutella, leite condensado, Ninho em pó, Oreo, Bis e Biju.",p:{400:43,500:58}},
+{n:"Copo Paçoquinha",c:"acai",e:"🥜",b:"Paçoca",d:"Açaí ou sorvete, paçoquinha, leite condensado e pasta de amendoim.",p:{300:23,400:28,500:35}},
+{n:"Batidinha de Açaí",c:"acai",e:"🥤",b:"Batidinha",d:"Açaí batido com leite condensado, Ninho em pó ou Paçoca.",p:{300:14,400:16,500:18,780:21},bat:true},
+{n:"Trufado Flocos Ovomaltine",c:"acai",e:"🍫",b:"Ovomaltine",d:"Açaí ou sorvete, trufado Nutella, flocos de Ovomaltine, bombom Ouro Branco, leite condensado e Ninho em pó.",p:{300:28,400:33,500:41}},
+{n:"Copo Trufado",c:"acai",e:"🍫",b:"Trufado",d:"Açaí ou sorvete, trufado de Nutella, Ninho em pó, granola ou amendoim, fruta e leite condensado.",p:{300:28,400:33,500:41},fr:true,gr:true},
+{n:"Dois Amores",c:"acai",e:"💜",b:"Dois sabores",d:"Açaí ou sorvete, creme de Ninho Original, Nutella pura, leite condensado e Ninho em pó.",p:{300:28,400:36,500:42}},
+{n:"Copo Vulcão",c:"acai",e:"🌋",b:"Favorito",d:"Açaí ou sorvete, leite condensado, Ninho em pó e fruta.",p:{300:23,400:28,500:35},fr:true},
+{n:"Copo Napolitano",c:"acai",e:"🍓",b:"3 cremes",d:"Açaí ou sorvete, leite condensado, Ninho em pó, creme Leitinho, creme de chocolate e creme de morango.",p:{300:25,400:30,500:38}},
+{n:"Copo Wafer",c:"acai",e:"🍫",b:"Crocante",d:"Açaí ou sorvete, Ninho em pó, creme de wafer e morango.",p:{300:23,400:28,500:35}},
+{n:"Copo 200ml",c:"acai",e:"🥄",b:"Pequeno",d:"Açaí ou sorvete, Ninho em pó, leite condensado, 1 creme e 1 fruta à escolha.",p:{200:18},c200:true},
+{n:"Copo Moranguete",c:"acai",e:"🍓",b:"Morango",d:"Creme de morango de um lado, creme de Nutella do outro e açaí no meio.",p:{300:28,400:36,500:42}},
+{n:"Milk-Shake",c:"milk",e:"🥤",b:"Geladinho",d:"Escolha seu sabor e tamanho.",p:{300:14,400:16,500:18,770:22},milk:true}
 ];
 
-const saboresMilk = [
-"Abacaxi suíço",
-"Abacaxi ao vinho",
-"Bombom",
-"Chocolate",
-"Chocolate Branco",
-"Flocos",
-"Frutas vermelhas",
-"Maracujá trufado",
-"Morango",
-"Ninho trufado",
-"Ovomaltine",
-"Paçoquinha",
-"Unicórnio"
-];
+const milkFlavors=["Abacaxi suíço","Abacaxi ao vinho","Bombom","Chocolate","Chocolate Branco","Flocos","Frutas vermelhas","Maracujá trufado","Morango","Ninho trufado","Ovomaltine","Paçoquinha","Unicórnio"];
+const creams=["Creme de Ninho","Leitinho","Wafer branco","Creme de chocolate","Pasta de amendoim","Chocolate","Creme de morango","Avelã"];
+const fruits=["Morango","Banana","Uvas verdes"];
 
-const cremes200 = [
-"Creme de Ninho",
-"Leitinho",
-"Wafer branco",
-"Creme de chocolate",
-"Pasta de amendoim",
-"Chocolate",
-"Creme de morango",
-"Avelã"
-];
+let fav=JSON.parse(localStorage.getItem("dn_fav")||"[]");
+let cart=JSON.parse(localStorage.getItem("dn_cart")||"[]");
+let filter="todos";
+let current=null;
+let cfg={};
+let mode="Delivery";
 
-const frutas = [
-"Morango",
-"Banana",
-"Uvas verdes"
-];
+const money=v=>v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const save=()=>{
+localStorage.setItem("dn_fav",JSON.stringify(fav));
+localStorage.setItem("dn_cart",JSON.stringify(cart))
+};
 
-let carrinho = [];
-let produtoAtual = null;
-let config = {};
-
-function dinheiro(valor){
-  return valor.toLocaleString("pt-BR",{
-    style:"currency",
-    currency:"BRL"
-  });
+function showToast(t){
+const x=document.getElementById("toast");
+x.textContent=t;
+x.classList.add("show");
+setTimeout(()=>x.classList.remove("show"),1800)
 }
 
-function renderProdutos(filtro="todos"){
-
-  const area = document.getElementById("produtos");
-
-  const lista = produtos.filter(p =>
-    filtro === "todos" || p.categoria === filtro
-  );
-
-  area.innerHTML = "";
-
-  lista.forEach((p,index)=>{
-
-    const precos = Object.entries(p.precos)
-      .map(([tamanho,preco]) => `${tamanho}ml ${dinheiro(preco)}`)
-      .join(" • ");
-
-    area.innerHTML += `
-      <div class="card">
-
-        <h2>${p.nome}</h2>
-
-        <div class="description">
-          ${p.descricao}
-        </div>
-
-        <div class="price">
-          ${precos}
-        </div>
-
-        <button onclick="abrirProduto(${produtos.indexOf(p)})">
-          Escolher
-        </button>
-
-      </div>
-    `;
-  });
+function updateStatus(){
+let h=new Date().getHours();
+document.getElementById("status").textContent=(h>=14&&h<23)?"Aberto agora • atendimento até 23h":"Fora do horário • você ainda pode enviar o pedido"
 }
 
-function filtrar(tipo,botao){
+function render(){
+const q=document.getElementById("search").value.toLowerCase().trim();
+const list=products.filter(x=>
+(filter==="todos"||x.c===filter||(filter==="favoritos"&&fav.includes(x.n)))&&
+(!q||(x.n+" "+x.d).toLowerCase().includes(q))
+);
 
-  document.querySelectorAll(".categories button")
-    .forEach(b=>b.classList.remove("active"));
+document.getElementById("result").textContent=list.length+" item"+(list.length===1?"":"s");
 
-  botao.classList.add("active");
+document.getElementById("products").innerHTML=list.length?
+list.map(x=>{
+let vals=Object.values(x.p);
+let mn=Math.min(...vals);
+let isfav=fav.includes(x.n);
 
-  renderProdutos(tipo);
+return `<article class="card">
+<div class="visual">
+<span class="badge">${x.b}</span>
+<button class="fav" onclick="toggleFav(event,'${esc(x.n)}')">${isfav?"❤️":"♡"}</button>
+${x.e}
+</div>
+<div class="body">
+<h3>${x.n}</h3>
+<div class="desc">${x.d}</div>
+<div class="price">${vals.length===1?money(mn):"A partir de "+money(mn)}</div>
+<div class="card-actions">
+<button class="choose" onclick="openProduct('${esc(x.n)}')">Escolher</button>
+<button class="plus" onclick="openProduct('${esc(x.n)}')">＋</button>
+</div>
+</div>
+</article>`
+}).join("")
+:"<div class='empty'>😕 Nenhum produto encontrado.<br>Tente outro nome ou categoria.</div>";
 }
 
-function abrirProduto(index){
-
-  produtoAtual = produtos[index];
-
-  config = {
-    tamanho:Object.keys(produtoAtual.precos)[0],
-    base:"Açaí",
-    fruta:"",
-    creme:"",
-    complemento:"",
-    sabor:"",
-    nutella:false
-  };
-
-  document.getElementById("modalTitulo").innerText =
-    produtoAtual.nome;
-
-  document.getElementById("modalDescricao").innerText =
-    produtoAtual.descricao;
-
-  montarConfiguracao();
-
-  document.getElementById("modalBg").style.display="block";
-
-  atualizarPreco();
+function esc(s){
+return s.replaceAll("'","\\'")
 }
 
-function montarConfiguracao(){
-
-  const area = document.getElementById("configuracao");
-
-  let html="";
-
-  html += `<div class="option-title">Tamanho</div>`;
-  html += `<div class="options">`;
-
-  Object.keys(produtoAtual.precos).forEach(tamanho=>{
-
-    html += `
-      <button class="option ${config.tamanho==tamanho?'selected':''}"
-      onclick="selecionar('tamanho','${tamanho}')">
-        ${tamanho}ml<br>
-        ${dinheiro(produtoAtual.precos[tamanho])}
-      </button>
-    `;
-  });
-
-  html += `</div>`;
-
-  if(!produtoAtual.milk){
-
-    html += `<div class="option-title">Base</div>`;
-    html += `<div class="options">`;
-
-    ["Açaí","Sorvete"].forEach(base=>{
-
-      html += `
-        <button class="option ${config.base===base?'selected':''}"
-        onclick="selecionar('base','${base}')">
-          ${base}
-        </button>
-      `;
-    });
-
-    html += `</div>`;
-  }
-
-  if(produtoAtual.milk){
-
-    html += `<div class="option-title">Sabor do Milk-Shake</div>`;
-    html += `<div class="options">`;
-
-    saboresMilk.forEach(sabor=>{
-
-      html += `
-        <button class="option ${config.sabor===sabor?'selected':''}"
-        onclick="selecionar('sabor','${sabor}')">
-          ${sabor}
-        </button>
-      `;
-    });
-
-    html += `</div>`;
-  }
-
-  if(produtoAtual.batidinha){
-
-    html += `<div class="option-title">Escolha o complemento</div>`;
-    html += `<div class="options">`;
-
-    ["Ninho em pó","Paçoca"].forEach(opcao=>{
-
-      html += `
-        <button class="option ${config.complemento===opcao?'selected':''}"
-        onclick="selecionar('complemento','${opcao}')">
-          ${opcao}
-        </button>
-      `;
-    });
-
-    html += `</div>`;
-  }
-
-  if(produtoAtual.frutas){
-
-    html += `<div class="option-title">Escolha a fruta</div>`;
-    html += `<div class="options">`;
-
-    frutas.forEach(fruta=>{
-
-      html += `
-        <button class="option ${config.fruta===fruta?'selected':''}"
-        onclick="selecionar('fruta','${fruta}')">
-          ${fruta}
-        </button>
-      `;
-    });
-
-    html += `</div>`;
-  }
-
-  if(produtoAtual.granola){
-
-    html += `<div class="option-title">Complemento</div>`;
-    html += `<div class="options">`;
-
-    ["Granola","Amendoim"].forEach(opcao=>{
-
-      html += `
-        <button class="option ${config.complemento===opcao?'selected':''}"
-        onclick="selecionar('complemento','${opcao}')">
-          ${opcao}
-        </button>
-      `;
-    });
-
-    html += `</div>`;
-  }
-
-  if(produtoAtual.copo200){
-
-    html += `<div class="option-title">Escolha 1 creme</div>`;
-    html += `<div class="options">`;
-
-    cremes200.forEach(creme=>{
-
-      html += `
-        <button class="option ${config.creme===creme?'selected':''}"
-        onclick="selecionar('creme','${creme}')">
-          ${creme}
-        </button>
-      `;
-    });
-
-    html += `</div>`;
-
-    html += `<div class="option-title">Escolha 1 fruta</div>`;
-    html += `<div class="options">`;
-
-    frutas.forEach(fruta=>{
-
-      html += `
-        <button class="option ${config.fruta===fruta?'selected':''}"
-        onclick="selecionar('fruta','${fruta}')">
-          ${fruta}
-        </button>
-      `;
-    });
-
-    html += `</div>`;
-
-    html += `
-      <div class="option-title">Adicional</div>
-
-      <label class="addon">
-
-        <input type="checkbox"
-        ${config.nutella ? "checked" : ""}
-        onchange="config.nutella=this.checked; atualizarPreco()">
-
-        <span>
-          🍫 Adicionar Nutella
-          <strong>+R$ 2,00</strong>
-        </span>
-
-      </label>
-    `;
-  }
-
-  area.innerHTML=html;
+function toggleFav(e,n){
+e.stopPropagation();
+let i=fav.indexOf(n);
+if(i>=0)fav.splice(i,1);
+else fav.push(n);
+save();
+render();
+showToast(i>=0?"Removido dos favoritos":"❤️ Adicionado aos favoritos")
 }
 
-function selecionar(campo,valor){
-
-  config[campo]=valor;
-
-  montarConfiguracao();
-
-  atualizarPreco();
+function filterCat(c,b){
+filter=c;
+document.querySelectorAll(".cats button").forEach(x=>x.classList.remove("active"));
+b.classList.add("active");
+render()
 }
 
-function atualizarPreco(){
+function openProduct(name){
+current=products.find(x=>x.n===name);
+cfg={
+size:Object.keys(current.p)[0],
+base:"Açaí",
+fruit:"",
+cream:"",
+comp:"",
+flavor:"",
+nutella:false
+};
 
-  let preco = produtoAtual.precos[config.tamanho];
-
-  if(produtoAtual.copo200 && config.nutella){
-    preco += 2;
-  }
-
-  document.getElementById("modalPreco").innerText =
-    dinheiro(preco);
+document.getElementById("modalTitle").textContent=current.n;
+document.getElementById("modalDesc").textContent=current.d;
+buildConfig();
+document.getElementById("productOverlay").style.display="block";
+updatePrice()
 }
 
-function validarProduto(){
-
-  if(produtoAtual.milk && !config.sabor){
-    alert("Escolha o sabor do Milk-Shake.");
-    return false;
-  }
-
-  if(produtoAtual.batidinha && !config.complemento){
-    alert("Escolha Ninho em pó ou Paçoca.");
-    return false;
-  }
-
-  if(produtoAtual.frutas && !config.fruta){
-    alert("Escolha a fruta.");
-    return false;
-  }
-
-  if(produtoAtual.copo200){
-
-    if(!config.creme){
-      alert("Escolha 1 creme.");
-      return false;
-    }
-
-    if(!config.fruta){
-      alert("Escolha 1 fruta.");
-      return false;
-    }
-  }
-
-  return true;
+function opt(field,value,label){
+return `<button class="option ${cfg[field]===value?"selected":""}" onclick="selectOpt('${field}','${esc(value)}')">${label}</button>`
 }
 
-function adicionarCarrinho(){
+function buildConfig(){
+let h='<div class="opt-title">Tamanho</div><div class="options">';
+Object.keys(current.p).forEach(s=>h+=opt("size",s,`${s}ml<br>${money(current.p[s])}`));
+h+='</div>';
 
-  if(!validarProduto()) return;
+if(!current.milk)
+h+='<div class="opt-title">Base</div><div class="options">'+
+opt("base","Açaí","🍇 Açaí")+
+opt("base","Sorvete","🍦 Sorvete")+
+'</div>';
 
-  let preco = produtoAtual.precos[config.tamanho];
-
-  if(produtoAtual.copo200 && config.nutella){
-    preco += 2;
-  }
-
-  const detalhes=[];
-
-  if(produtoAtual.milk)
-    detalhes.push(`Sabor: ${config.sabor}`);
-
-  if(!produtoAtual.milk)
-    detalhes.push(`Base: ${config.base}`);
-
-  if(config.fruta)
-    detalhes.push(`Fruta: ${config.fruta}`);
-
-  if(config.creme)
-    detalhes.push(`Creme: ${config.creme}`);
-
-  if(config.complemento)
-    detalhes.push(`Complemento: ${config.complemento}`);
-
-  if(produtoAtual.copo200 && config.nutella)
-    detalhes.push(`Adicional: Nutella +R$ 2,00`);
-
-  carrinho.push({
-    nome:produtoAtual.nome,
-    tamanho:config.tamanho,
-    preco:preco,
-    detalhes:detalhes
-  });
-
-  atualizarCarrinho();
-
-  fecharModal();
+if(current.milk){
+h+='<div class="opt-title">Sabor do Milk-Shake</div><div class="options">';
+milkFlavors.forEach(x=>h+=opt("flavor",x,x));
+h+='</div>'
 }
 
-function atualizarCarrinho(){
+if(current.bat)
+h+='<div class="opt-title">Complemento</div><div class="options">'+
+opt("comp","Ninho em pó","Ninho em pó")+
+opt("comp","Paçoca","Paçoca")+
+'</div>';
 
-  document.getElementById("contador").innerText =
-    carrinho.length;
-
-  const lista=document.getElementById("listaCarrinho");
-
-  if(carrinho.length===0){
-
-    lista.innerHTML=
-      `<div class="empty">Seu carrinho está vazio.</div>`;
-
-    document.getElementById("totalCarrinho").innerText =
-      dinheiro(0);
-
-    return;
-  }
-
-  lista.innerHTML="";
-
-  let total=0;
-
-  carrinho.forEach((item,index)=>{
-
-    total += item.preco;
-
-    lista.innerHTML += `
-
-      <div class="cart-item">
-
-        <strong>
-          ${index+1}. ${item.nome} — ${item.tamanho}ml
-        </strong>
-
-        <div class="details">
-          ${item.detalhes.join("<br>")}
-        </div>
-
-        <div class="item-actions">
-
-          <span>${dinheiro(item.preco)}</span>
-
-          <button onclick="removerItem(${index})">
-            🗑️
-          </button>
-
-        </div>
-
-      </div>
-    `;
-  });
-
-  document.getElementById("totalCarrinho").innerText =
-    dinheiro(total);
+if(current.fr){
+h+='<div class="opt-title">Escolha a fruta</div><div class="options">';
+fruits.forEach(x=>h+=opt("fruit",x,x));
+h+='</div>'
 }
 
-function removerItem(index){
+if(current.gr)
+h+='<div class="opt-title">Complemento</div><div class="options">'+
+opt("comp","Granola","Granola")+
+opt("comp","Amendoim","Amendoim")+
+'</div>';
 
-  carrinho.splice(index,1);
-
-  atualizarCarrinho();
-}
-
-function abrirCarrinho(){
-
-  atualizarCarrinho();
-
-  document.getElementById("cartBox").style.display="block";
-}
-
-function fecharCarrinho(){
-
-  document.getElementById("cartBox").style.display="none";
-}
-
-function fecharModal(){
-
-  document.getElementById("modalBg").style.display="none";
-}
-
-function enviarWhatsApp(){
-
-  if(carrinho.length===0){
-
-    alert("Adicione algum produto ao carrinho primeiro.");
-    return;
-  }
-
-  let mensagem =
-    "🍇 *NOVO PEDIDO — D&N AÇAÍ BES*%0A%0A";
-
-  let total=0;
-
-  carrinho.forEach((item,index)=>{
-
-    total += item.preco;
-
-    mensagem +=
-      `*${index+1}. ${item.nome} — ${item.tamanho}ml*%0A`;
-
-    item.detalhes.forEach(detalhe=>{
-
-      mensagem += `• ${detalhe}%0A`;
-
-    });
-
-    mensagem +=
-      `💰 ${dinheiro(item.preco)}%0A%0A`;
-  });
-
-  mensagem +=
-    `*TOTAL: ${dinheiro(total)}*%0A%0A`;
-
-  mensagem +=
-    "Olá! Gostaria de confirmar este pedido. 😊";
-
-  window.open(
-    `https://wa.me/${WHATSAPP}?text=${mensagem}`,
-    "_blank"
-  );
-}
-
-renderProdutos();
-
-</script>
-
-</body>
-  </html>
+if(current.c200){
+h+='<div class="opt-title">Escolha 1 creme</div><div class="options">';
+creams.forEach(x=>h+=opt("cream",x,x));
+h+='</div><div class="opt-title">Escolha 1 fruta</div><div class="options">';
+fruits.forEach(x=>h+=opt("fruit",x,x));
+h
