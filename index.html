@@ -4,66 +4,202 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>D&N Açaí BES</title>
+<title>D&N Açaí BES 🍇</title>
 
 <style>
+
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f6effb;
+  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(circle at top left, #f5d9ff 0%, transparent 35%),
+    linear-gradient(180deg, #fbf7ff 0%, #f4eafa 100%);
   color: #24152f;
 }
 
-header {
-  background: linear-gradient(135deg, #4b0870, #8e24aa, #b52fc4);
+/* ===== CAPA ===== */
+
+.hero {
+  position: relative;
+  overflow: hidden;
   color: white;
   text-align: center;
-  padding: 35px 18px 30px;
-  border-radius: 0 0 30px 30px;
-  box-shadow: 0 6px 20px rgba(70, 10, 100, .25);
+  padding: 38px 18px 42px;
+  border-radius: 0 0 35px 35px;
+  background:
+    radial-gradient(circle at 20% 20%, #d85cff 0%, transparent 28%),
+    radial-gradient(circle at 85% 30%, #ff55b8 0%, transparent 25%),
+    linear-gradient(135deg, #39005d, #7200a8, #a800c9);
+  box-shadow: 0 12px 35px rgba(91, 0, 130, .30);
+}
+
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(3px);
+  opacity: .25;
+}
+
+.hero::before {
+  width: 150px;
+  height: 150px;
+  background: white;
+  top: -80px;
+  left: -60px;
+}
+
+.hero::after {
+  width: 180px;
+  height: 180px;
+  background: #ff8be8;
+  bottom: -110px;
+  right: -60px;
 }
 
 .logo {
-  font-size: 42px;
-  margin-bottom: 5px;
+  position: relative;
+  z-index: 2;
+  font-size: 58px;
+  animation: flutuar 3s ease-in-out infinite;
 }
 
-header h1 {
-  margin: 0;
-  font-size: 30px;
+.hero h1 {
+  position: relative;
+  z-index: 2;
+  margin: 5px 0 8px;
+  font-size: 34px;
+  letter-spacing: -1px;
 }
 
-header p {
-  margin: 8px 0 0;
+.hero p {
+  position: relative;
+  z-index: 2;
+  margin: 0 auto;
+  max-width: 400px;
   font-size: 15px;
+  line-height: 1.5;
+  opacity: .95;
 }
+
+.botao-comecar {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  margin-top: 22px;
+  padding: 14px 24px;
+  border-radius: 50px;
+  background: white;
+  color: #69008f;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 8px 25px rgba(0,0,0,.18);
+  transition: .2s;
+}
+
+.botao-comecar:active {
+  transform: scale(.95);
+}
+
+@keyframes flutuar {
+  0%,100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+/* ===== CONTAINER ===== */
 
 .container {
-  max-width: 720px;
+  width: 100%;
+  max-width: 760px;
   margin: auto;
   padding: 16px;
 }
 
 .titulo {
+  margin: 28px 0 14px;
   color: #5b1688;
-  margin: 25px 0 15px;
-  font-size: 24px;
+  font-size: 25px;
 }
 
-.produto {
+/* ===== CATEGORIAS ===== */
+
+.categorias {
+  display: flex;
+  gap: 9px;
+  overflow-x: auto;
+  padding: 4px 0 12px;
+  scrollbar-width: none;
+}
+
+.categorias::-webkit-scrollbar {
+  display: none;
+}
+
+.categoria {
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 50px;
+  padding: 11px 18px;
   background: white;
-  border-radius: 20px;
-  padding: 19px;
-  margin: 15px 0;
-  box-shadow: 0 5px 18px rgba(70, 20, 90, .10);
-  border: 1px solid #eadcf2;
+  color: #641681;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(70,20,90,.10);
+  cursor: pointer;
+}
+
+.categoria.ativa {
+  color: white;
+  background: linear-gradient(135deg, #65008c, #b000d1);
+  box-shadow: 0 6px 18px rgba(111,0,145,.25);
+}
+
+/* ===== PRODUTOS ===== */
+
+.produto {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255,255,255,.92);
+  border-radius: 24px;
+  padding: 20px;
+  margin: 16px 0;
+  border: 1px solid #ead8f1;
+  box-shadow: 0 7px 25px rgba(70,20,90,.10);
+  transition: transform .2s, box-shadow .2s;
+}
+
+.produto::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #edb7ff;
+  opacity: .15;
+  right: -45px;
+  top: -45px;
+}
+
+.produto:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(70,20,90,.15);
 }
 
 .produto h3 {
+  position: relative;
   margin: 0 0 8px;
   color: #5b1688;
   font-size: 21px;
@@ -73,7 +209,7 @@ header p {
   color: #66586d;
   line-height: 1.5;
   font-size: 14px;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 }
 
 .tamanhos {
@@ -84,44 +220,55 @@ header p {
 
 .tamanho {
   flex: 1;
-  min-width: 95px;
+  min-width: 88px;
   border: 2px solid #7b1fa2;
   background: white;
   color: #6a1b9a;
-  border-radius: 12px;
-  padding: 12px 8px;
+  border-radius: 14px;
+  padding: 11px 7px;
   font-weight: bold;
   cursor: pointer;
-}
-
-.tamanho:active {
-  transform: scale(.97);
+  transition: .18s;
 }
 
 .tamanho.selecionado {
-  background: #7b1fa2;
   color: white;
+  background: linear-gradient(135deg, #65108d, #a900c7);
+  border-color: #7b1fa2;
+  box-shadow: 0 5px 15px rgba(105,0,145,.22);
+}
+
+.tamanho:active {
+  transform: scale(.94);
 }
 
 .adicionar {
   width: 100%;
-  margin-top: 12px;
-  background: #5b1688;
+  margin-top: 13px;
+  padding: 13px;
+  border: 0;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #5b1688, #a900c7);
   color: white;
   font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(90,0,120,.20);
 }
 
 .adicionar:active {
   transform: scale(.98);
 }
 
+/* ===== PEDIDO ===== */
+
 #pedido {
   background: white;
-  border-radius: 22px;
-  padding: 20px;
-  margin: 30px 0 20px;
-  box-shadow: 0 6px 22px rgba(70, 20, 90, .15);
+  border-radius: 25px;
+  padding: 21px;
+  margin: 35px 0 20px;
   border: 2px solid #eadcf2;
+  box-shadow: 0 8px 28px rgba(70,20,90,.13);
 }
 
 #pedido h2 {
@@ -131,7 +278,7 @@ header p {
 
 .item-carrinho {
   border-bottom: 1px solid #eee;
-  padding: 13px 0;
+  padding: 14px 0;
 }
 
 .item-nome {
@@ -147,14 +294,15 @@ header p {
 .controles {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
   margin-top: 8px;
 }
 
 .controles button {
-  width: 35px;
-  height: 35px;
-  padding: 0;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 10px;
   background: #eee2f4;
   color: #5b1688;
   font-size: 20px;
@@ -162,70 +310,125 @@ header p {
 
 .quantidade {
   font-weight: bold;
+  min-width: 20px;
+  text-align: center;
 }
 
 .remover {
   margin-left: auto;
-  background: #ffe5e5 !important;
-  color: #b00020 !important;
-  font-size: 14px !important;
   width: auto !important;
   padding: 8px 10px !important;
+  font-size: 13px !important;
+  background: #ffe5e5 !important;
+  color: #b00020 !important;
 }
 
 .total {
-  font-size: 24px;
+  padding: 17px 0;
+  font-size: 25px;
   font-weight: bold;
   color: #4b0870;
-  margin: 20px 0;
 }
 
 .campo {
   width: 100%;
-  padding: 13px;
-  border: 1px solid #ddd;
-  border-radius: 12px;
+  padding: 14px;
   margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 13px;
   font-size: 15px;
   outline: none;
 }
 
 .campo:focus {
-  border-color: #7b1fa2;
+  border-color: #8e24aa;
+  box-shadow: 0 0 0 3px rgba(142,36,170,.08);
 }
 
 .whatsapp {
   width: 100%;
-  background: #25D366;
+  padding: 16px;
+  border: 0;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #18b957, #25d366);
   color: white;
   font-size: 17px;
-  padding: 15px;
+  font-weight: bold;
+  box-shadow: 0 7px 18px rgba(37,211,102,.25);
 }
 
 .limpar {
   width: 100%;
   margin-top: 9px;
-  background: #e4e0e5;
+  padding: 12px;
+  border: 0;
+  border-radius: 13px;
+  background: #eee9ef;
   color: #44394a;
 }
 
 .vazio {
   color: #777;
   text-align: center;
-  padding: 10px 0;
+  padding: 12px 0;
 }
+
+/* ===== CARRINHO FLUTUANTE ===== */
+
+.carrinho-flutuante {
+  position: fixed;
+  z-index: 20;
+  right: 16px;
+  bottom: 18px;
+  width: 58px;
+  height: 58px;
+  border: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #65008c, #b000d1);
+  color: white;
+  font-size: 25px;
+  box-shadow: 0 8px 25px rgba(76,0,100,.35);
+  cursor: pointer;
+}
+
+.contador {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  min-width: 21px;
+  height: 21px;
+  padding: 2px 5px;
+  border-radius: 50px;
+  background: #ff315f;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* ===== RODAPÉ ===== */
 
 .rodape {
   text-align: center;
   color: #76687b;
   font-size: 13px;
-  padding: 20px;
+  line-height: 1.6;
+  padding: 25px 20px 90px;
 }
+
+/* ===== CELULAR ===== */
 
 @media (max-width: 500px) {
 
-  header h1 {
-    font-size: 27px;
+  .hero {
+    padding-top: 30px;
+  }
+
+  .hero h1 {
+    font-size: 29px;
+  }
+
+  .logo {
+    font-size: 52px;
   }
 
   .container {
@@ -233,35 +436,74 @@ header p {
   }
 
   .produto {
-    padding: 16px;
+    padding: 17px;
   }
 
   .tamanho {
-    min-width: 90px;
+    min-width: 85px;
   }
 }
+
 </style>
 </head>
 
 <body>
 
-<header>
+<header class="hero">
+
   <div class="logo">🍇</div>
+
   <h1>D&N Açaí BES</h1>
-  <p>Monte seu pedido e peça pelo WhatsApp 💜</p>
+
+  <p>
+    Seu açaí do seu jeito 💜<br>
+    Escolha, monte seu pedido e peça pelo WhatsApp.
+  </p>
+
+  <a href="#produtos" class="botao-comecar">
+    🍧 Montar meu pedido
+  </a>
+
 </header>
 
 <div class="container">
 
-  <h2 class="titulo">🍧 Nossos Copos</h2>
+  <h2 class="titulo">Escolha o que você quer 😋</h2>
+
+  <div class="categorias">
+
+    <button
+      class="categoria ativa"
+      onclick="filtrar('todos', this)">
+      ✨ Todos
+    </button>
+
+    <button
+      class="categoria"
+      onclick="filtrar('acai', this)">
+      🍇 Açaí
+    </button>
+
+    <button
+      class="categoria"
+      onclick="filtrar('bebidas', this)">
+      🥤 Bebidas
+    </button>
+
+  </div>
 
   <div id="produtos"></div>
 
   <div id="pedido">
+
     <h2>🛒 Seu pedido</h2>
 
     <div id="listaPedido">
-      <div class="vazio">Seu carrinho está vazio.</div>
+
+      <div class="vazio">
+        Seu carrinho está vazio.
+      </div>
+
     </div>
 
     <div class="total">
@@ -282,19 +524,40 @@ header p {
       placeholder="Endereço para entrega"
     >
 
-    <button class="whatsapp" onclick="enviarWhatsApp()">
+    <button
+      class="whatsapp"
+      onclick="enviarWhatsApp()">
       📲 Enviar pedido pelo WhatsApp
     </button>
 
-    <button class="limpar" onclick="limparPedido()">
+    <button
+      class="limpar"
+      onclick="limparPedido()">
       🗑️ Limpar pedido
     </button>
+
   </div>
 
-  <div class="rodape">
-    D&N Açaí BES 💜<br>
-    Pedido rápido e fácil pelo WhatsApp
-  </div>
+</div>
+
+<button
+  class="carrinho-flutuante"
+  onclick="irParaPedido()">
+
+  🛒
+
+  <span
+    class="contador"
+    id="contador">
+    0
+  </span>
+
+</button>
+
+<div class="rodape">
+
+  D&N Açaí BES 💜<br>
+  Pedido rápido, fácil e direto pelo WhatsApp
 
 </div>
 
@@ -303,6 +566,7 @@ header p {
 const produtos = [
 
   {
+    categoria: "acai",
     nome: "Copo Trufado com Nutella",
     descricao: "Açaí no meio, trufado/Nutella e frutas à sua escolha.",
     tamanhos: [
@@ -313,6 +577,7 @@ const produtos = [
   },
 
   {
+    categoria: "acai",
     nome: "Copo Moranguete",
     descricao: "Creme de morango de um lado, creme de Nutella do outro e açaí no meio.",
     tamanhos: [
@@ -323,6 +588,7 @@ const produtos = [
   },
 
   {
+    categoria: "acai",
     nome: "Copo Dois Amores",
     descricao: "Açaí ou sorvete, creme de Ninho original, Nutella pura, leite condensado e Ninho em pó.",
     tamanhos: [
@@ -333,6 +599,7 @@ const produtos = [
   },
 
   {
+    categoria: "acai",
     nome: "Copo Napolitano",
     descricao: "Açaí ou sorvete, leite condensado, Ninho em pó, creme Leitinho, chocolate e morango.",
     tamanhos: [
@@ -343,6 +610,7 @@ const produtos = [
   },
 
   {
+    categoria: "acai",
     nome: "Copo Wafer",
     descricao: "Açaí ou sorvete, Ninho em pó, creme de wafer e morango.",
     tamanhos: [
@@ -353,6 +621,7 @@ const produtos = [
   },
 
   {
+    categoria: "acai",
     nome: "Copo Tradicional",
     descricao: "Açaí ou sorvete com complementos.",
     tamanhos: [
@@ -363,6 +632,7 @@ const produtos = [
   },
 
   {
+    categoria: "acai",
     nome: "Copo Tropical",
     descricao: "Açaí ou sorvete com complementos.",
     tamanhos: [
@@ -373,6 +643,7 @@ const produtos = [
   },
 
   {
+    categoria: "acai",
     nome: "Copo Vulcão",
     descricao: "Açaí ou sorvete com complementos.",
     tamanhos: [
@@ -383,6 +654,7 @@ const produtos = [
   },
 
   {
+    categoria: "bebidas",
     nome: "Batidinha de Açaí",
     descricao: "Batidinha de açaí.",
     tamanhos: [
@@ -394,6 +666,7 @@ const produtos = [
   },
 
   {
+    categoria: "bebidas",
     nome: "Milk-Shake",
     descricao: "Milk-shake nos tamanhos disponíveis.",
     tamanhos: [
@@ -407,6 +680,8 @@ const produtos = [
 ];
 
 let pedido = [];
+let selecionado = {};
+let filtroAtual = "todos";
 
 function dinheiro(valor) {
   return valor.toFixed(2).replace(".", ",");
@@ -416,7 +691,16 @@ function carregarProdutos() {
 
   const area = document.getElementById("produtos");
 
+  area.innerHTML = "";
+
   produtos.forEach((produto, produtoIndex) => {
+
+    if (
+      filtroAtual !== "todos" &&
+      produto.categoria !== filtroAtual
+    ) {
+      return;
+    }
 
     const card = document.createElement("div");
 
@@ -440,6 +724,7 @@ function carregarProdutos() {
     });
 
     card.innerHTML = `
+
       <h3>${produto.nome}</h3>
 
       <div class="descricao">
@@ -456,6 +741,7 @@ function carregarProdutos() {
       >
         ➕ Adicionar ao pedido
       </button>
+
     `;
 
     area.appendChild(card);
@@ -464,7 +750,24 @@ function carregarProdutos() {
 
 }
 
-let selecionado = {};
+function filtrar(categoria, botao) {
+
+  filtroAtual = categoria;
+
+  document
+    .querySelectorAll(".categoria")
+    .forEach(b => b.classList.remove("ativa"));
+
+  botao.classList.add("ativa");
+
+  carregarProdutos();
+
+  window.scrollTo({
+    top: 250,
+    behavior: "smooth"
+  });
+
+}
 
 function selecionarTamanho(produtoIndex, tamanhoIndex) {
 
@@ -476,6 +779,8 @@ function selecionarTamanho(produtoIndex, tamanhoIndex) {
       document.getElementById(
         `botao-${produtoIndex}-${index}`
       );
+
+    if (!botao) return;
 
     if (index === tamanhoIndex) {
       botao.classList.add("selecionado");
@@ -525,12 +830,37 @@ function adicionarProduto(produtoIndex) {
 
   atualizarPedido();
 
+  const carrinho =
+    document.querySelector(".carrinho-flutuante");
+
+  carrinho.animate(
+    [
+      { transform: "scale(1)" },
+      { transform: "scale(1.18)" },
+      { transform: "scale(1)" }
+    ],
+    {
+      duration: 350
+    }
+  );
+
 }
 
 function atualizarPedido() {
 
   const lista =
     document.getElementById("listaPedido");
+
+  const contador =
+    document.getElementById("contador");
+
+  let quantidadeTotal = 0;
+
+  pedido.forEach(item => {
+    quantidadeTotal += item.quantidade;
+  });
+
+  contador.innerText = quantidadeTotal;
 
   if (pedido.length === 0) {
 
@@ -544,7 +874,6 @@ function atualizarPedido() {
   }
 
   let html = "";
-
   let total = 0;
 
   pedido.forEach((item, index) => {
@@ -555,6 +884,7 @@ function atualizarPedido() {
     total += subtotal;
 
     html += `
+
       <div class="item-carrinho">
 
         <div class="item-nome">
@@ -581,14 +911,14 @@ function atualizarPedido() {
 
           <button
             class="remover"
-            onclick="remover(${index})"
-          >
+            onclick="remover(${index})">
             Remover
           </button>
 
         </div>
 
       </div>
+
     `;
 
   });
@@ -613,9 +943,7 @@ function diminuir(index) {
   pedido[index].quantidade--;
 
   if (pedido[index].quantidade <= 0) {
-
     pedido.splice(index, 1);
-
   }
 
   atualizarPedido();
@@ -646,6 +974,15 @@ function limparPedido() {
 
 }
 
+function irParaPedido() {
+
+  document.getElementById("pedido")
+    .scrollIntoView({
+      behavior: "smooth"
+    });
+
+}
+
 function enviarWhatsApp() {
 
   if (pedido.length === 0) {
@@ -656,10 +993,14 @@ function enviarWhatsApp() {
   }
 
   const nome =
-    document.getElementById("nome").value.trim();
+    document.getElementById("nome")
+    .value
+    .trim();
 
   const endereco =
-    document.getElementById("endereco").value.trim();
+    document.getElementById("endereco")
+    .value
+    .trim();
 
   let mensagem =
     "Olá! Quero fazer um pedido na D&N Açaí BES 🍇\n\n";
