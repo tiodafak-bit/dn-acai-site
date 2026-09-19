@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>D&N Açaí BES</title>
+
 <style>
 * {
   box-sizing: border-box;
@@ -12,159 +14,22 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f5effa;
+  background: #f6effb;
   color: #24152f;
 }
 
 header {
-  background: linear-gradient(135deg, #4b0870, #8e24aa);
+  background: linear-gradient(135deg, #4b0870, #8e24aa, #b52fc4);
   color: white;
   text-align: center;
-  padding: 35px 18px;
-  border-radius: 0 0 28px 28px;
-  box-shadow: 0 5px 18px rgba(0,0,0,0.18);
+  padding: 35px 18px 30px;
+  border-radius: 0 0 30px 30px;
+  box-shadow: 0 6px 20px rgba(70, 10, 100, .25);
 }
 
-header h1 {
-  margin: 0;
-  font-size: 32px;
-}
-
-header p {
-  margin: 10px 0 0;
-  font-size: 16px;
-  opacity: 0.95;
-}
-
-.container {
-  max-width: 700px;
-  margin: auto;
-  padding: 18px;
-}
-
-h2 {
-  color: #5b1688;
-  margin-top: 28px;
-}
-
-.produto {
-  background: white;
-  border-radius: 20px;
-  padding: 20px;
-  margin: 18px 0;
-  box-shadow: 0 5px 18px rgba(70,20,90,0.10);
-  border: 1px solid #eadcf2;
-}
-
-.produto h3 {
-  margin-top: 0;
-  color: #5b1688;
-  font-size: 21px;
-}
-
-.produto p {
-  line-height: 1.5;
-  color: #5f5265;
-}
-
-.tamanhos {
-  display: flex;
-  gap: 9px;
-  flex-wrap: wrap;
-}
-
-.tamanho {
-  border: 2px solid #7b1fa2;
-  background: white;
-  color: #6a1b9a;
-  border-radius: 12px;
-  padding: 11px 13px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.tamanho:active {
-  transform: scale(0.97);
-}
-
-.tamanho.selecionado {
-  background: #7b1fa2;
-  color: white;
-}
-
-#pedido {
-  background: linear-gradient(180deg, #ffffff, #faf5fd);
-  border-radius: 22px;
-  padding: 20px;
-  margin-top: 28px;
-  box-shadow: 0 6px 20px rgba(70,20,90,0.14);
-  border: 2px solid #eadcf2;
-}
-
-#listaPedido {
-  white-space: pre-line;
-  line-height: 1.6;
-  color: #403448;
-}
-
-.total {
-  font-size: 23px;
-  font-weight: bold;
-  margin: 18px 0;
-  color: #4b0870;
-}
-
-button {
-  border: none;
-  border-radius: 12px;
-  padding: 12px 16px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.whatsapp {
-  background: #25D366;
-  color: white;
-  width: 100%;
-  font-size: 17px;
-  padding: 15px;
-}
-
-.limpar {
-  background: #e4e0e5;
-  color: #44394a;
-  width: 100%;
-  margin-top: 9px;
-}
-
-@media (max-width: 500px) {
-  header h1 {
-    font-size: 27px;
-  }
-
-  .container {
-    padding: 12px;
-  }
-
-  .produto {
-    padding: 17px;
-  }
-
-  .tamanho {
-    flex: 1;
-    min-width: 100px;
-  }
-}
-  </style>
-
-
-
-
-header {
-  background: #5b1688;
-  color: white;
-  text-align: center;
-  padding: 25px 15px;
+.logo {
+  font-size: 42px;
+  margin-bottom: 5px;
 }
 
 header h1 {
@@ -174,30 +39,41 @@ header h1 {
 
 header p {
   margin: 8px 0 0;
+  font-size: 15px;
 }
 
 .container {
-  max-width: 700px;
+  max-width: 720px;
   margin: auto;
-  padding: 15px;
+  padding: 16px;
 }
 
-h2 {
+.titulo {
   color: #5b1688;
-  margin-top: 25px;
+  margin: 25px 0 15px;
+  font-size: 24px;
 }
 
 .produto {
   background: white;
-  border-radius: 15px;
-  padding: 18px;
+  border-radius: 20px;
+  padding: 19px;
   margin: 15px 0;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  box-shadow: 0 5px 18px rgba(70, 20, 90, .10);
+  border: 1px solid #eadcf2;
 }
 
 .produto h3 {
-  margin-top: 0;
+  margin: 0 0 8px;
   color: #5b1688;
+  font-size: 21px;
+}
+
+.descricao {
+  color: #66586d;
+  line-height: 1.5;
+  font-size: 14px;
+  margin-bottom: 15px;
 }
 
 .tamanhos {
@@ -207,63 +83,162 @@ h2 {
 }
 
 .tamanho {
-  border: 2px solid #5b1688;
+  flex: 1;
+  min-width: 95px;
+  border: 2px solid #7b1fa2;
   background: white;
-  color: #5b1688;
-  border-radius: 10px;
-  padding: 10px;
+  color: #6a1b9a;
+  border-radius: 12px;
+  padding: 12px 8px;
+  font-weight: bold;
   cursor: pointer;
+}
+
+.tamanho:active {
+  transform: scale(.97);
 }
 
 .tamanho.selecionado {
-  background: #5b1688;
+  background: #7b1fa2;
   color: white;
-}
-
-button {
-  border: none;
-  border-radius: 10px;
-  padding: 12px 16px;
-  cursor: pointer;
-  font-weight: bold;
 }
 
 .adicionar {
-  background: #7b1fa2;
-  color: white;
   width: 100%;
   margin-top: 12px;
+  background: #5b1688;
+  color: white;
+  font-size: 16px;
+}
+
+.adicionar:active {
+  transform: scale(.98);
 }
 
 #pedido {
   background: white;
-  border-radius: 15px;
-  padding: 18px;
-  margin-top: 25px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  border-radius: 22px;
+  padding: 20px;
+  margin: 30px 0 20px;
+  box-shadow: 0 6px 22px rgba(70, 20, 90, .15);
+  border: 2px solid #eadcf2;
 }
 
-#listaPedido {
-  white-space: pre-line;
+#pedido h2 {
+  margin-top: 0;
+  color: #5b1688;
+}
+
+.item-carrinho {
+  border-bottom: 1px solid #eee;
+  padding: 13px 0;
+}
+
+.item-nome {
+  font-weight: bold;
+  color: #3d2945;
+}
+
+.item-preco {
+  color: #6a1b9a;
+  margin: 5px 0;
+}
+
+.controles {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.controles button {
+  width: 35px;
+  height: 35px;
+  padding: 0;
+  background: #eee2f4;
+  color: #5b1688;
+  font-size: 20px;
+}
+
+.quantidade {
+  font-weight: bold;
+}
+
+.remover {
+  margin-left: auto;
+  background: #ffe5e5 !important;
+  color: #b00020 !important;
+  font-size: 14px !important;
+  width: auto !important;
+  padding: 8px 10px !important;
 }
 
 .total {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
-  margin: 15px 0;
+  color: #4b0870;
+  margin: 20px 0;
+}
+
+.campo {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  outline: none;
+}
+
+.campo:focus {
+  border-color: #7b1fa2;
 }
 
 .whatsapp {
+  width: 100%;
   background: #25D366;
   color: white;
-  width: 100%;
   font-size: 17px;
+  padding: 15px;
 }
 
 .limpar {
-  background: #ddd;
   width: 100%;
-  margin-top: 8px;
+  margin-top: 9px;
+  background: #e4e0e5;
+  color: #44394a;
+}
+
+.vazio {
+  color: #777;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.rodape {
+  text-align: center;
+  color: #76687b;
+  font-size: 13px;
+  padding: 20px;
+}
+
+@media (max-width: 500px) {
+
+  header h1 {
+    font-size: 27px;
+  }
+
+  .container {
+    padding: 12px;
+  }
+
+  .produto {
+    padding: 16px;
+  }
+
+  .tamanho {
+    min-width: 90px;
+  }
 }
 </style>
 </head>
@@ -271,215 +246,483 @@ button {
 <body>
 
 <header>
-  <h1>🍇 D&N Açaí BES</h1>
-  <p>Monte seu pedido e peça pelo WhatsApp</p>
+  <div class="logo">🍇</div>
+  <h1>D&N Açaí BES</h1>
+  <p>Monte seu pedido e peça pelo WhatsApp 💜</p>
 </header>
 
 <div class="container">
 
-<h2>🍧 Nossos Copos</h2>
+  <h2 class="titulo">🍧 Nossos Copos</h2>
 
-<div class="produto">
-  <h3>Copo Trufado com Nutella</h3>
-  <p>Açaí no meio, trufado/Nutella e frutas à sua escolha.</p>
+  <div id="produtos"></div>
 
-  <div class="tamanhos">
-    <button class="tamanho" onclick="selecionar(this, 'Copo Trufado com Nutella', 28)">300 ml — R$28</button>
-    <button class="tamanho" onclick="selecionar(this, 'Copo Trufado com Nutella', 33)">400 ml — R$33</button>
-    <button class="tamanho" onclick="selecionar(this, 'Copo Trufado com Nutella', 41)">500 ml — R$41</button>
-  </div>
-</div>
+  <div id="pedido">
+    <h2>🛒 Seu pedido</h2>
 
-<div class="produto">
-  <h3>Copo Moranguete</h3>
-  <p>Creme de morango de um lado, creme de Nutella do outro e açaí no meio.</p>
+    <div id="listaPedido">
+      <div class="vazio">Seu carrinho está vazio.</div>
+    </div>
 
-  <div class="tamanhos">
-    <button class="tamanho" onclick="selecionar(this, 'Copo Moranguete', 28)">300 ml — R$28</button>
-    <button class="tamanho" onclick="selecionar(this, 'Copo Moranguete', 36)">400 ml — R$36</button>
-    <button class="tamanho" onclick="selecionar(this, 'Copo Moranguete', 42)">500 ml — R$42</button>
-  </div>
-</div>
+    <div class="total">
+      Total: R$ <span id="total">0,00</span>
+    </div>
 
-<div class="produto">
-  <h3>Copo Dois Amores</h3>
-  <p>Açaí ou sorvete, creme de Ninho original, Nutella pura, leite condensado e Ninho em pó.</p>
+    <input
+      class="campo"
+      id="nome"
+      type="text"
+      placeholder="Seu nome"
+    >
 
-  <div class="tamanhos">
-    <button class="tamanho" onclick="selecionar(this, 'Copo Dois Amores', 28)">300 ml — R$28</button>
-    <button class="tamanho" onclick="selecionar(this, 'Copo Dois Amores', 36)">400 ml — R$36</button>
-    <button class="tamanho" onclick="selecionar(this, 'Copo Dois Amores', 42)">500 ml — R$42</button>
-  </div>
-</div>
+    <input
+      class="campo"
+      id="endereco"
+      type="text"
+      placeholder="Endereço para entrega"
+    >
 
-<div class="produto">
-  <h3>Copo Napolitano</h3>
-  <p>Açaí ou sorvete, leite condensado, Ninho em pó, creme Leitinho, chocolate e morango.</p>
+    <button class="whatsapp" onclick="enviarWhatsApp()">
+      📲 Enviar pedido pelo WhatsApp
+    </button>
 
-  <div class="tamanhos">
-    <button class="tamanho" onclick="selecionar(this, 'Copo Napolitano', 25)">300 ml — R$25</button>
-    <button class="tamanho" onclick="selecionar(this, 'Copo Napolitano', 30)">400 ml — R$30</button>
-    <button class="tamanho" onclick="selecionar(this, 'Copo Napolitano', 38)">500 ml — R$38</button>
-  </div>
-</div>
-
-<div class="produto">
-  <h3>Copo Wafer</h3>
-  <p>Açaí ou sorvete, Ninho em pó, creme de wafer e morango.</p>
-
-  <div class="tamanhos">
-    <button class="tamanho" onclick="selecionar(this, 'Copo Wafer', 23)">300 ml — R$23</button>
-    <button class="tamanho" onclick="selecionar(this, 'Copo Wafer', 28)">400 ml — R$28</button>
-    <button class="tamanho" onclick="selecionar(this, 'Copo Wafer', 35)">500 ml — R$35</button>
-  </div>
-</div>
-
-<div class="produto">
-  <h3>Copo Tradicional</h3>
-
-  <div class="tamanhos">
-    <button class="tamanho" onclick="selecionar(this, 'Copo Tradicional', 23)">300 ml — R$23</button>
-    <button class="tamanho" onclick="selecionar(this, 'Copo Tradicional', 28)">400 ml — R$28</button>
-    <button class="tamanho" onclick="selecionar(this, 'Copo Tradicional', 35)">500 ml — R$35</button>
-  </div>
-</div>
-
-<div class="produto">
-  <h3>Copo Tropical</h3>
-
-  <div class="tamanhos">
-    <button class="tamanho" onclick="selecionar(this, 'Copo Tropical', 28)">300 ml — R$28</button>
-    <button class="tamanho" onclick="selecionar(this, 'Copo Tropical', 33)">400 ml — R$33</button>
-    <button class="tamanho" onclick="selecionar(this, 'Copo Tropical', 38)">500 ml — R$38</button>
-  </div>
-</div>
-
-<div class="produto">
-  <h3>Copo Vulcão</h3>
-
-  <div class="tamanhos">
-    <button class="tamanho" onclick="selecionar(this, 'Copo Vulcão', 23)">300 ml — R$23</button>
-    <button class="tamanho" onclick="selecionar(this, 'Copo Vulcão', 28)">400 ml — R$28</button>
-    <button class="tamanho" onclick="selecionar(this, 'Copo Vulcão', 35)">500 ml — R$35</button>
-  </div>
-</div>
-
-<div class="produto">
-  <h3>Batidinha de Açaí</h3>
-
-  <div class="tamanhos">
-    <button class="tamanho" onclick="selecionar(this, 'Batidinha de Açaí', 14)">300 ml — R$14</button>
-    <button class="tamanho" onclick="selecionar(this, 'Batidinha de Açaí', 16)">400 ml — R$16</button>
-    <button class="tamanho" onclick="selecionar(this, 'Batidinha de Açaí', 18)">500 ml — R$18</button>
-    <button class="tamanho" onclick="selecionar(this, 'Batidinha de Açaí', 21)">780 ml — R$21</button>
-  </div>
-</div>
-
-<div class="produto">
-  <h3>Milk-Shake</h3>
-
-  <div class="tamanhos">
-    <button class="tamanho" onclick="selecionar(this, 'Milk-Shake', 14)">300 ml — R$14</button>
-    <button class="tamanho" onclick="selecionar(this, 'Milk-Shake', 16)">400 ml — R$16</button>
-    <button class="tamanho" onclick="selecionar(this, 'Milk-Shake', 18)">500 ml — R$18</button>
-    <button class="tamanho" onclick="selecionar(this, 'Milk-Shake', 22)">770 ml — R$22</button>
-  </div>
-</div>
-
-<div id="pedido">
-  <h2>🛒 Seu pedido</h2>
-
-  <div id="listaPedido">
-    Nenhum item adicionado.
+    <button class="limpar" onclick="limparPedido()">
+      🗑️ Limpar pedido
+    </button>
   </div>
 
-  <div class="total">
-    Total: R$ <span id="total">0,00</span>
+  <div class="rodape">
+    D&N Açaí BES 💜<br>
+    Pedido rápido e fácil pelo WhatsApp
   </div>
 
-  <button class="whatsapp" onclick="enviarWhatsApp()">
-    📱 Enviar pedido pelo WhatsApp
-  </button>
-
-  <button class="limpar" onclick="limparPedido()">
-    Limpar pedido
-  </button>
 </div>
 
-</div>
 <script>
+
+const produtos = [
+
+  {
+    nome: "Copo Trufado com Nutella",
+    descricao: "Açaí no meio, trufado/Nutella e frutas à sua escolha.",
+    tamanhos: [
+      ["300 ml", 28],
+      ["400 ml", 33],
+      ["500 ml", 41]
+    ]
+  },
+
+  {
+    nome: "Copo Moranguete",
+    descricao: "Creme de morango de um lado, creme de Nutella do outro e açaí no meio.",
+    tamanhos: [
+      ["300 ml", 28],
+      ["400 ml", 36],
+      ["500 ml", 42]
+    ]
+  },
+
+  {
+    nome: "Copo Dois Amores",
+    descricao: "Açaí ou sorvete, creme de Ninho original, Nutella pura, leite condensado e Ninho em pó.",
+    tamanhos: [
+      ["300 ml", 28],
+      ["400 ml", 36],
+      ["500 ml", 42]
+    ]
+  },
+
+  {
+    nome: "Copo Napolitano",
+    descricao: "Açaí ou sorvete, leite condensado, Ninho em pó, creme Leitinho, chocolate e morango.",
+    tamanhos: [
+      ["300 ml", 25],
+      ["400 ml", 30],
+      ["500 ml", 38]
+    ]
+  },
+
+  {
+    nome: "Copo Wafer",
+    descricao: "Açaí ou sorvete, Ninho em pó, creme de wafer e morango.",
+    tamanhos: [
+      ["300 ml", 23],
+      ["400 ml", 28],
+      ["500 ml", 35]
+    ]
+  },
+
+  {
+    nome: "Copo Tradicional",
+    descricao: "Açaí ou sorvete com complementos.",
+    tamanhos: [
+      ["300 ml", 23],
+      ["400 ml", 28],
+      ["500 ml", 35]
+    ]
+  },
+
+  {
+    nome: "Copo Tropical",
+    descricao: "Açaí ou sorvete com complementos.",
+    tamanhos: [
+      ["300 ml", 28],
+      ["400 ml", 33],
+      ["500 ml", 38]
+    ]
+  },
+
+  {
+    nome: "Copo Vulcão",
+    descricao: "Açaí ou sorvete com complementos.",
+    tamanhos: [
+      ["300 ml", 23],
+      ["400 ml", 28],
+      ["500 ml", 35]
+    ]
+  },
+
+  {
+    nome: "Batidinha de Açaí",
+    descricao: "Batidinha de açaí.",
+    tamanhos: [
+      ["300 ml", 14],
+      ["400 ml", 16],
+      ["500 ml", 18],
+      ["780 ml", 21]
+    ]
+  },
+
+  {
+    nome: "Milk-Shake",
+    descricao: "Milk-shake nos tamanhos disponíveis.",
+    tamanhos: [
+      ["300 ml", 14],
+      ["400 ml", 16],
+      ["500 ml", 18],
+      ["770 ml", 22]
+    ]
+  }
+
+];
+
 let pedido = [];
-let total = 0;
 
-function selecionar(botao, produto, preco) {
-  let tamanho = botao.innerText.split("—")[0].trim();
+function dinheiro(valor) {
+  return valor.toFixed(2).replace(".", ",");
+}
 
-  pedido.push({
-    produto: produto,
-    tamanho: tamanho,
-    preco: preco
+function carregarProdutos() {
+
+  const area = document.getElementById("produtos");
+
+  produtos.forEach((produto, produtoIndex) => {
+
+    const card = document.createElement("div");
+
+    card.className = "produto";
+
+    let botoes = "";
+
+    produto.tamanhos.forEach((tamanho, tamanhoIndex) => {
+
+      botoes += `
+        <button
+          class="tamanho"
+          id="botao-${produtoIndex}-${tamanhoIndex}"
+          onclick="selecionarTamanho(${produtoIndex}, ${tamanhoIndex})"
+        >
+          ${tamanho[0]}<br>
+          R$${dinheiro(tamanho[1])}
+        </button>
+      `;
+
+    });
+
+    card.innerHTML = `
+      <h3>${produto.nome}</h3>
+
+      <div class="descricao">
+        ${produto.descricao}
+      </div>
+
+      <div class="tamanhos">
+        ${botoes}
+      </div>
+
+      <button
+        class="adicionar"
+        onclick="adicionarProduto(${produtoIndex})"
+      >
+        ➕ Adicionar ao pedido
+      </button>
+    `;
+
+    area.appendChild(card);
+
   });
 
-  total += preco;
+}
+
+let selecionado = {};
+
+function selecionarTamanho(produtoIndex, tamanhoIndex) {
+
+  selecionado[produtoIndex] = tamanhoIndex;
+
+  produtos[produtoIndex].tamanhos.forEach((_, index) => {
+
+    const botao =
+      document.getElementById(
+        `botao-${produtoIndex}-${index}`
+      );
+
+    if (index === tamanhoIndex) {
+      botao.classList.add("selecionado");
+    } else {
+      botao.classList.remove("selecionado");
+    }
+
+  });
+
+}
+
+function adicionarProduto(produtoIndex) {
+
+  if (selecionado[produtoIndex] === undefined) {
+
+    alert("Escolha um tamanho primeiro.");
+
+    return;
+  }
+
+  const tamanhoIndex = selecionado[produtoIndex];
+
+  const produto = produtos[produtoIndex];
+
+  const tamanho = produto.tamanhos[tamanhoIndex];
+
+  const nomeCompleto =
+    produto.nome + " - " + tamanho[0];
+
+  const existente = pedido.find(
+    item => item.nome === nomeCompleto
+  );
+
+  if (existente) {
+
+    existente.quantidade++;
+
+  } else {
+
+    pedido.push({
+      nome: nomeCompleto,
+      preco: tamanho[1],
+      quantidade: 1
+    });
+
+  }
 
   atualizarPedido();
+
 }
 
 function atualizarPedido() {
-  let lista = document.getElementById("listaPedido");
 
-  let texto = "";
+  const lista =
+    document.getElementById("listaPedido");
 
-  pedido.forEach(function(item, index) {
-    texto += (index + 1) + ". " +
-      item.produto + " - " +
-      item.tamanho + " - R$" +
-      item.preco.toFixed(2).replace(".", ",") +
-      "\n";
+  if (pedido.length === 0) {
+
+    lista.innerHTML =
+      '<div class="vazio">Seu carrinho está vazio.</div>';
+
+    document.getElementById("total").innerText =
+      "0,00";
+
+    return;
+  }
+
+  let html = "";
+
+  let total = 0;
+
+  pedido.forEach((item, index) => {
+
+    const subtotal =
+      item.preco * item.quantidade;
+
+    total += subtotal;
+
+    html += `
+      <div class="item-carrinho">
+
+        <div class="item-nome">
+          ${item.nome}
+        </div>
+
+        <div class="item-preco">
+          R$${dinheiro(subtotal)}
+        </div>
+
+        <div class="controles">
+
+          <button onclick="diminuir(${index})">
+            −
+          </button>
+
+          <span class="quantidade">
+            ${item.quantidade}
+          </span>
+
+          <button onclick="aumentar(${index})">
+            +
+          </button>
+
+          <button
+            class="remover"
+            onclick="remover(${index})"
+          >
+            Remover
+          </button>
+
+        </div>
+
+      </div>
+    `;
+
   });
 
-  lista.innerText = texto || "Nenhum item adicionado.";
+  lista.innerHTML = html;
 
   document.getElementById("total").innerText =
-    total.toFixed(2).replace(".", ",");
+    dinheiro(total);
+
+}
+
+function aumentar(index) {
+
+  pedido[index].quantidade++;
+
+  atualizarPedido();
+
+}
+
+function diminuir(index) {
+
+  pedido[index].quantidade--;
+
+  if (pedido[index].quantidade <= 0) {
+
+    pedido.splice(index, 1);
+
+  }
+
+  atualizarPedido();
+
+}
+
+function remover(index) {
+
+  pedido.splice(index, 1);
+
+  atualizarPedido();
+
 }
 
 function limparPedido() {
+
   pedido = [];
-  total = 0;
+
+  selecionado = {};
+
+  document
+    .querySelectorAll(".tamanho")
+    .forEach(botao => {
+      botao.classList.remove("selecionado");
+    });
+
   atualizarPedido();
+
 }
 
 function enviarWhatsApp() {
+
   if (pedido.length === 0) {
+
     alert("Adicione pelo menos um produto ao pedido.");
+
     return;
   }
+
+  const nome =
+    document.getElementById("nome").value.trim();
+
+  const endereco =
+    document.getElementById("endereco").value.trim();
 
   let mensagem =
     "Olá! Quero fazer um pedido na D&N Açaí BES 🍇\n\n";
 
-  pedido.forEach(function(item, index) {
+  if (nome) {
+
+    mensagem +=
+      "Nome: " + nome + "\n";
+
+  }
+
+  mensagem += "\nPedido:\n";
+
+  let total = 0;
+
+  pedido.forEach((item, index) => {
+
+    const subtotal =
+      item.preco * item.quantidade;
+
+    total += subtotal;
+
     mensagem +=
       (index + 1) + ". " +
-      item.produto + " - " +
-      item.tamanho + " - R$" +
-      item.preco.toFixed(2).replace(".", ",") +
+      item.nome +
+      " x" +
+      item.quantidade +
+      " - R$" +
+      dinheiro(subtotal) +
       "\n";
+
   });
 
   mensagem +=
     "\nTotal: R$" +
-    total.toFixed(2).replace(".", ",") +
-    "\n\nMeu endereço para entrega: ";
+    dinheiro(total);
 
-  let url =
+  if (endereco) {
+
+    mensagem +=
+      "\n\nEndereço para entrega: " +
+      endereco;
+
+  } else {
+
+    mensagem +=
+      "\n\nEndereço para entrega: ";
+
+  }
+
+  const url =
     "https://wa.me/5516996194221?text=" +
     encodeURIComponent(mensagem);
 
   window.open(url, "_blank");
+
 }
+
+carregarProdutos();
+
+atualizarPedido();
+
 </script>
 
-
-    
+</body>
+  </html>
