@@ -264,22 +264,11 @@ button {
 </div>
 
 </div>
-
 <script>
-
 let pedido = [];
 let total = 0;
 
 function selecionar(botao, produto, preco) {
-
-  let botoes = botao.parentElement.querySelectorAll(".tamanho");
-
-  botoes.forEach(function(b) {
-    b.classList.remove("selecionado");
-  });
-
-  botao.classList.add("selecionado");
-
   let tamanho = botao.innerText.split("—")[0].trim();
 
   pedido.push({
@@ -294,24 +283,19 @@ function selecionar(botao, produto, preco) {
 }
 
 function atualizarPedido() {
-
   let lista = document.getElementById("listaPedido");
-
-  if (pedido.length === 0) {
-    lista.innerText = "Nenhum item adicionado.";
-    return;
-  }
 
   let texto = "";
 
   pedido.forEach(function(item, index) {
-    texto += (index + 1) + ". " + item.produto +
-      " - " + item.tamanho +
-      " - R$" + item.preco.toFixed(2).replace(".", ",") +
+    texto += (index + 1) + ". " +
+      item.produto + " - " +
+      item.tamanho + " - R$" +
+      item.preco.toFixed(2).replace(".", ",") +
       "\n";
   });
 
-  lista.innerText = texto;
+  lista.innerText = texto || "Nenhum item adicionado.";
 
   document.getElementById("total").innerText =
     total.toFixed(2).replace(".", ",");
@@ -320,24 +304,17 @@ function atualizarPedido() {
 function limparPedido() {
   pedido = [];
   total = 0;
-
-  document.querySelectorAll(".tamanho").forEach(function(botao) {
-    botao.classList.remove("selecionado");
-  });
-
   atualizarPedido();
-
-  document.getElementById("total").innerText = "0,00";
 }
 
 function enviarWhatsApp() {
-
   if (pedido.length === 0) {
     alert("Adicione pelo menos um produto ao pedido.");
     return;
   }
 
-  let mensagem = "Olá! Quero fazer um pedido na D&N Açaí BES 🍇\n\n";
+  let mensagem =
+    "Olá! Quero fazer um pedido na D&N Açaí BES 🍇\n\n";
 
   pedido.forEach(function(item, index) {
     mensagem +=
@@ -348,4 +325,18 @@ function enviarWhatsApp() {
       "\n";
   });
 
-  mensagem += "\nTotal: R$" +
+  mensagem +=
+    "\nTotal: R$" +
+    total.toFixed(2).replace(".", ",") +
+    "\n\nMeu endereço para entrega: ";
+
+  let url =
+    "https://wa.me/5516996194221?text=" +
+    encodeURIComponent(mensagem);
+
+  window.open(url, "_blank");
+}
+</script>
+
+
+    
