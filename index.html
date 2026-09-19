@@ -3,1065 +3,1062 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>D&N Açaí BES 🍇</title>
+<title>D&N Açaí BES</title>
 
 <style>
-
-* {
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-html {
-  scroll-behavior: smooth;
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f7f3ff;
+  color:#241633;
 }
 
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background:
-    radial-gradient(circle at top left, #f5d9ff 0%, transparent 35%),
-    linear-gradient(180deg, #fbf7ff 0%, #f4eafa 100%);
-  color: #24152f;
+header{
+  background:linear-gradient(135deg,#35105f,#7416a8,#d92c91);
+  color:white;
+  padding:32px 18px 42px;
+  text-align:center;
+  border-radius:0 0 30px 30px;
+  box-shadow:0 8px 25px rgba(80,20,120,.25);
 }
 
-/* ===== CAPA ===== */
-
-.hero {
-  position: relative;
-  overflow: hidden;
-  color: white;
-  text-align: center;
-  padding: 38px 18px 42px;
-  border-radius: 0 0 35px 35px;
-  background:
-    radial-gradient(circle at 20% 20%, #d85cff 0%, transparent 28%),
-    radial-gradient(circle at 85% 30%, #ff55b8 0%, transparent 25%),
-    linear-gradient(135deg, #39005d, #7200a8, #a800c9);
-  box-shadow: 0 12px 35px rgba(91, 0, 130, .30);
+.logo{
+  font-size:34px;
+  font-weight:900;
 }
 
-.hero::before,
-.hero::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(3px);
-  opacity: .25;
+.subtitle{
+  margin-top:8px;
+  font-size:15px;
+  opacity:.9;
 }
 
-.hero::before {
-  width: 150px;
-  height: 150px;
-  background: white;
-  top: -80px;
-  left: -60px;
+.info{
+  margin-top:18px;
+  font-size:13px;
+  line-height:1.6;
 }
 
-.hero::after {
-  width: 180px;
-  height: 180px;
-  background: #ff8be8;
-  bottom: -110px;
-  right: -60px;
+.container{
+  width:min(1100px,94%);
+  margin:25px auto 110px;
 }
 
-.logo {
-  position: relative;
-  z-index: 2;
-  font-size: 58px;
-  animation: flutuar 3s ease-in-out infinite;
+.categories{
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  padding-bottom:8px;
+  margin-bottom:22px;
 }
 
-.hero h1 {
-  position: relative;
-  z-index: 2;
-  margin: 5px 0 8px;
-  font-size: 34px;
-  letter-spacing: -1px;
+.categories button{
+  border:0;
+  padding:11px 18px;
+  border-radius:30px;
+  background:white;
+  color:#5d267b;
+  font-weight:bold;
+  box-shadow:0 4px 14px rgba(0,0,0,.08);
+  white-space:nowrap;
+  cursor:pointer;
 }
 
-.hero p {
-  position: relative;
-  z-index: 2;
-  margin: 0 auto;
-  max-width: 400px;
-  font-size: 15px;
-  line-height: 1.5;
-  opacity: .95;
+.categories button.active{
+  background:#68189a;
+  color:white;
 }
 
-.botao-comecar {
-  position: relative;
-  z-index: 2;
-  display: inline-block;
-  margin-top: 22px;
-  padding: 14px 24px;
-  border-radius: 50px;
-  background: white;
-  color: #69008f;
-  font-weight: bold;
-  text-decoration: none;
-  box-shadow: 0 8px 25px rgba(0,0,0,.18);
-  transition: .2s;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:18px;
 }
 
-.botao-comecar:active {
-  transform: scale(.95);
+.card{
+  background:white;
+  border-radius:22px;
+  padding:20px;
+  box-shadow:0 7px 25px rgba(50,20,70,.09);
+  border:1px solid #eee4f6;
+  transition:.2s;
 }
 
-@keyframes flutuar {
-  0%,100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-7px);
-  }
+.card:hover{
+  transform:translateY(-3px);
 }
 
-/* ===== CONTAINER ===== */
-
-.container {
-  width: 100%;
-  max-width: 760px;
-  margin: auto;
-  padding: 16px;
+.card h2{
+  font-size:20px;
+  margin-bottom:8px;
 }
 
-.titulo {
-  margin: 28px 0 14px;
-  color: #5b1688;
-  font-size: 25px;
+.description{
+  color:#71677a;
+  font-size:13px;
+  line-height:1.5;
+  min-height:58px;
 }
 
-/* ===== CATEGORIAS ===== */
-
-.categorias {
-  display: flex;
-  gap: 9px;
-  overflow-x: auto;
-  padding: 4px 0 12px;
-  scrollbar-width: none;
+.price{
+  color:#68189a;
+  font-size:15px;
+  font-weight:bold;
+  margin:14px 0;
 }
 
-.categorias::-webkit-scrollbar {
-  display: none;
+.card button{
+  width:100%;
+  border:0;
+  padding:13px;
+  border-radius:13px;
+  background:linear-gradient(135deg,#68189a,#a421b7);
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
 }
 
-.categoria {
-  flex: 0 0 auto;
-  border: 0;
-  border-radius: 50px;
-  padding: 11px 18px;
-  background: white;
-  color: #641681;
-  font-weight: bold;
-  box-shadow: 0 4px 15px rgba(70,20,90,.10);
-  cursor: pointer;
+.modal-bg{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(15,5,20,.7);
+  z-index:1000;
+  padding:18px;
+  overflow:auto;
 }
 
-.categoria.ativa {
-  color: white;
-  background: linear-gradient(135deg, #65008c, #b000d1);
-  box-shadow: 0 6px 18px rgba(111,0,145,.25);
+.modal{
+  background:white;
+  max-width:520px;
+  margin:30px auto;
+  border-radius:25px;
+  padding:24px;
+  position:relative;
 }
 
-/* ===== PRODUTOS ===== */
-
-.produto {
-  position: relative;
-  overflow: hidden;
-  background: rgba(255,255,255,.92);
-  border-radius: 24px;
-  padding: 20px;
-  margin: 16px 0;
-  border: 1px solid #ead8f1;
-  box-shadow: 0 7px 25px rgba(70,20,90,.10);
-  transition: transform .2s, box-shadow .2s;
+.close{
+  position:absolute;
+  right:17px;
+  top:14px;
+  border:0;
+  background:#eee;
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  cursor:pointer;
+  font-size:18px;
 }
 
-.produto::before {
-  content: "";
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: #edb7ff;
-  opacity: .15;
-  right: -45px;
-  top: -45px;
+.modal h2{
+  padding-right:45px;
+  margin-bottom:8px;
 }
 
-.produto:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(70,20,90,.15);
+.modal-description{
+  color:#766b80;
+  font-size:13px;
+  line-height:1.5;
+  margin-bottom:20px;
 }
 
-.produto h3 {
-  position: relative;
-  margin: 0 0 8px;
-  color: #5b1688;
-  font-size: 21px;
+.option-title{
+  font-size:14px;
+  font-weight:bold;
+  margin:18px 0 9px;
 }
 
-.descricao {
-  color: #66586d;
-  line-height: 1.5;
-  font-size: 14px;
-  margin-bottom: 16px;
+.options{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:9px;
 }
 
-.tamanhos {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+.option{
+  border:1px solid #ddd;
+  background:#fff;
+  padding:11px;
+  border-radius:12px;
+  cursor:pointer;
+  text-align:left;
 }
 
-.tamanho {
-  flex: 1;
-  min-width: 88px;
-  border: 2px solid #7b1fa2;
-  background: white;
-  color: #6a1b9a;
-  border-radius: 14px;
-  padding: 11px 7px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: .18s;
+.option.selected{
+  border-color:#7416a8;
+  background:#f4e8fb;
+  color:#5d167c;
+  font-weight:bold;
 }
 
-.tamanho.selecionado {
-  color: white;
-  background: linear-gradient(135deg, #65108d, #a900c7);
-  border-color: #7b1fa2;
-  box-shadow: 0 5px 15px rgba(105,0,145,.22);
+.addon{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:13px;
+  border:1px solid #ddd;
+  border-radius:13px;
+  margin-top:8px;
+  cursor:pointer;
 }
 
-.tamanho:active {
-  transform: scale(.94);
+.addon input{
+  width:18px;
+  height:18px;
 }
 
-.adicionar {
-  width: 100%;
-  margin-top: 13px;
-  padding: 13px;
-  border: 0;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #5b1688, #a900c7);
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 5px 15px rgba(90,0,120,.20);
+.total-modal{
+  margin-top:22px;
+  padding:15px;
+  background:#f6effb;
+  border-radius:15px;
+  display:flex;
+  justify-content:space-between;
+  font-weight:bold;
 }
 
-.adicionar:active {
-  transform: scale(.98);
+.confirm{
+  width:100%;
+  margin-top:14px;
+  border:0;
+  padding:15px;
+  border-radius:14px;
+  background:#25d366;
+  color:white;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
 }
 
-/* ===== PEDIDO ===== */
-
-#pedido {
-  background: white;
-  border-radius: 25px;
-  padding: 21px;
-  margin: 35px 0 20px;
-  border: 2px solid #eadcf2;
-  box-shadow: 0 8px 28px rgba(70,20,90,.13);
+.cart{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:900;
+  border:0;
+  background:#68189a;
+  color:white;
+  padding:15px 20px;
+  border-radius:40px;
+  box-shadow:0 8px 25px rgba(60,10,90,.3);
+  font-weight:bold;
+  cursor:pointer;
 }
 
-#pedido h2 {
-  margin-top: 0;
-  color: #5b1688;
+.cart-count{
+  background:#ff3c91;
+  padding:3px 7px;
+  border-radius:20px;
+  margin-left:5px;
 }
 
-.item-carrinho {
-  border-bottom: 1px solid #eee;
-  padding: 14px 0;
+.cart-box{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(15,5,20,.7);
+  z-index:1100;
+  padding:18px;
+  overflow:auto;
 }
 
-.item-nome {
-  font-weight: bold;
-  color: #3d2945;
+.cart-content{
+  max-width:520px;
+  margin:30px auto;
+  background:white;
+  border-radius:25px;
+  padding:24px;
 }
 
-.item-preco {
-  color: #6a1b9a;
-  margin: 5px 0;
+.cart-item{
+  padding:15px 0;
+  border-bottom:1px solid #eee;
 }
 
-.controles {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  margin-top: 8px;
+.cart-item strong{
+  display:block;
+  margin-bottom:5px;
 }
 
-.controles button {
-  width: 36px;
-  height: 36px;
-  border: 0;
-  border-radius: 10px;
-  background: #eee2f4;
-  color: #5b1688;
-  font-size: 20px;
+.details{
+  color:#766b80;
+  font-size:12px;
+  line-height:1.5;
 }
 
-.quantidade {
-  font-weight: bold;
-  min-width: 20px;
-  text-align: center;
+.item-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:9px;
 }
 
-.remover {
-  margin-left: auto;
-  width: auto !important;
-  padding: 8px 10px !important;
-  font-size: 13px !important;
-  background: #ffe5e5 !important;
-  color: #b00020 !important;
+.item-actions button{
+  border:0;
+  background:#eee;
+  width:30px;
+  height:30px;
+  border-radius:8px;
+  cursor:pointer;
 }
 
-.total {
-  padding: 17px 0;
-  font-size: 25px;
-  font-weight: bold;
-  color: #4b0870;
+.cart-total{
+  margin-top:20px;
+  font-size:19px;
+  font-weight:bold;
+  display:flex;
+  justify-content:space-between;
 }
 
-.campo {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 10px;
-  border: 1px solid #ddd;
-  border-radius: 13px;
-  font-size: 15px;
-  outline: none;
+.whatsapp{
+  width:100%;
+  border:0;
+  padding:15px;
+  margin-top:15px;
+  background:#25d366;
+  color:white;
+  border-radius:14px;
+  font-weight:bold;
+  font-size:16px;
+  cursor:pointer;
 }
 
-.campo:focus {
-  border-color: #8e24aa;
-  box-shadow: 0 0 0 3px rgba(142,36,170,.08);
+.empty{
+  text-align:center;
+  color:#777;
+  padding:30px 0;
 }
 
-.whatsapp {
-  width: 100%;
-  padding: 16px;
-  border: 0;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #18b957, #25d366);
-  color: white;
-  font-size: 17px;
-  font-weight: bold;
-  box-shadow: 0 7px 18px rgba(37,211,102,.25);
-}
-
-.limpar {
-  width: 100%;
-  margin-top: 9px;
-  padding: 12px;
-  border: 0;
-  border-radius: 13px;
-  background: #eee9ef;
-  color: #44394a;
-}
-
-.vazio {
-  color: #777;
-  text-align: center;
-  padding: 12px 0;
-}
-
-/* ===== CARRINHO FLUTUANTE ===== */
-
-.carrinho-flutuante {
-  position: fixed;
-  z-index: 20;
-  right: 16px;
-  bottom: 18px;
-  width: 58px;
-  height: 58px;
-  border: 0;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #65008c, #b000d1);
-  color: white;
-  font-size: 25px;
-  box-shadow: 0 8px 25px rgba(76,0,100,.35);
-  cursor: pointer;
-}
-
-.contador {
-  position: absolute;
-  top: -3px;
-  right: -3px;
-  min-width: 21px;
-  height: 21px;
-  padding: 2px 5px;
-  border-radius: 50px;
-  background: #ff315f;
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-/* ===== RODAPÉ ===== */
-
-.rodape {
-  text-align: center;
-  color: #76687b;
-  font-size: 13px;
-  line-height: 1.6;
-  padding: 25px 20px 90px;
-}
-
-/* ===== CELULAR ===== */
-
-@media (max-width: 500px) {
-
-  .hero {
-    padding-top: 30px;
+@media(max-width:500px){
+  .logo{
+    font-size:29px;
   }
 
-  .hero h1 {
-    font-size: 29px;
+  .grid{
+    grid-template-columns:1fr;
   }
 
-  .logo {
-    font-size: 52px;
-  }
-
-  .container {
-    padding: 12px;
-  }
-
-  .produto {
-    padding: 17px;
-  }
-
-  .tamanho {
-    min-width: 85px;
+  .options{
+    grid-template-columns:1fr;
   }
 }
-
 </style>
 </head>
 
 <body>
 
-<header class="hero">
+<header>
+  <div class="logo">🍇 D&N Açaí BES</div>
+  <div class="subtitle">Seu momento doce começa aqui 💜</div>
 
-  <div class="logo">🍇</div>
-
-  <h1>D&N Açaí BES</h1>
-
-  <p>
-    Seu açaí do seu jeito 💜<br>
-    Escolha, monte seu pedido e peça pelo WhatsApp.
-  </p>
-
-  <a href="#produtos" class="botao-comecar">
-    🍧 Montar meu pedido
-  </a>
-
+  <div class="info">
+    📍 Rua Expedicionário Mário Fernandes, 57<br>
+    🚚 Delivery disponível<br>
+    📲 Faça seu pedido pelo WhatsApp
+  </div>
 </header>
 
 <div class="container">
 
-  <h2 class="titulo">Escolha o que você quer 😋</h2>
-
-  <div class="categorias">
-
-    <button
-      class="categoria ativa"
-      onclick="filtrar('todos', this)">
-      ✨ Todos
-    </button>
-
-    <button
-      class="categoria"
-      onclick="filtrar('acai', this)">
-      🍇 Açaí
-    </button>
-
-    <button
-      class="categoria"
-      onclick="filtrar('bebidas', this)">
-      🥤 Bebidas
-    </button>
-
+  <div class="categories">
+    <button class="active" onclick="filtrar('todos',this)">Todos</button>
+    <button onclick="filtrar('acai',this)">Açaí</button>
+    <button onclick="filtrar('milk',this)">Milk-Shake</button>
   </div>
 
-  <div id="produtos"></div>
-
-  <div id="pedido">
-
-    <h2>🛒 Seu pedido</h2>
-
-    <div id="listaPedido">
-
-      <div class="vazio">
-        Seu carrinho está vazio.
-      </div>
-
-    </div>
-
-    <div class="total">
-      Total: R$ <span id="total">0,00</span>
-    </div>
-
-    <input
-      class="campo"
-      id="nome"
-      type="text"
-      placeholder="Seu nome"
-    >
-
-    <input
-      class="campo"
-      id="endereco"
-      type="text"
-      placeholder="Endereço para entrega"
-    >
-
-    <button
-      class="whatsapp"
-      onclick="enviarWhatsApp()">
-      📲 Enviar pedido pelo WhatsApp
-    </button>
-
-    <button
-      class="limpar"
-      onclick="limparPedido()">
-      🗑️ Limpar pedido
-    </button>
-
-  </div>
+  <div class="grid" id="produtos"></div>
 
 </div>
 
-<button
-  class="carrinho-flutuante"
-  onclick="irParaPedido()">
-
-  🛒
-
-  <span
-    class="contador"
-    id="contador">
-    0
-  </span>
-
+<button class="cart" onclick="abrirCarrinho()">
+  🛒 Carrinho
+  <span class="cart-count" id="contador">0</span>
 </button>
 
-<div class="rodape">
+<!-- MODAL PRODUTO -->
 
-  D&N Açaí BES 💜<br>
-  Pedido rápido, fácil e direto pelo WhatsApp
+<div class="modal-bg" id="modalBg">
+  <div class="modal">
+
+    <button class="close" onclick="fecharModal()">×</button>
+
+    <h2 id="modalTitulo"></h2>
+    <div class="modal-description" id="modalDescricao"></div>
+
+    <div id="configuracao"></div>
+
+    <div class="total-modal">
+      <span>Total</span>
+      <span id="modalPreco">R$ 0,00</span>
+    </div>
+
+    <button class="confirm" onclick="adicionarCarrinho()">
+      🛒 Adicionar ao carrinho
+    </button>
+
+  </div>
+</div>
+
+<!-- CARRINHO -->
+
+<div class="cart-box" id="cartBox">
+
+  <div class="cart-content">
+
+    <button class="close" onclick="fecharCarrinho()">×</button>
+
+    <h2>🛒 Seu pedido</h2>
+
+    <div id="listaCarrinho"></div>
+
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="totalCarrinho">R$ 0,00</span>
+    </div>
+
+    <button class="whatsapp" onclick="enviarWhatsApp()">
+      📲 Enviar pedido pelo WhatsApp
+    </button>
+
+  </div>
 
 </div>
 
 <script>
 
+const WHATSAPP = "5516996194221";
+
 const produtos = [
 
-  {
-    categoria: "acai",
-    nome: "Copo Trufado com Nutella",
-    descricao: "Açaí no meio, trufado/Nutella e frutas à sua escolha.",
-    tamanhos: [
-      ["300 ml", 28],
-      ["400 ml", 33],
-      ["500 ml", 41]
-    ]
-  },
+{
+ nome:"Trufado de Paçoquinha",
+ categoria:"acai",
+ descricao:"Açaí ou sorvete, trufado de Nutella, pasta de amendoim, leite condensado e paçoca.",
+ precos:{300:28,400:33,500:41}
+},
 
-  {
-    categoria: "acai",
-    nome: "Copo Moranguete",
-    descricao: "Creme de morango de um lado, creme de Nutella do outro e açaí no meio.",
-    tamanhos: [
-      ["300 ml", 28],
-      ["400 ml", 36],
-      ["500 ml", 42]
-    ]
-  },
+{
+ nome:"Kinder Bueno White",
+ categoria:"acai",
+ descricao:"Açaí ou sorvete, creme de Ninho Original, Nutella pura, Kinder Bueno White, leite condensado e Ninho em pó.",
+ precos:{300:34,400:43,500:58}
+},
 
-  {
-    categoria: "acai",
-    nome: "Copo Dois Amores",
-    descricao: "Açaí ou sorvete, creme de Ninho original, Nutella pura, leite condensado e Ninho em pó.",
-    tamanhos: [
-      ["300 ml", 28],
-      ["400 ml", 36],
-      ["500 ml", 42]
-    ]
-  },
+{
+ nome:"Copo Tropical",
+ categoria:"acai",
+ descricao:"Açaí ou sorvete, leite condensado, Ninho em pó, Nutella pura, morango, banana e uvas verdes.",
+ precos:{300:28,400:33,500:38}
+},
 
-  {
-    categoria: "acai",
-    nome: "Copo Napolitano",
-    descricao: "Açaí ou sorvete, leite condensado, Ninho em pó, creme Leitinho, chocolate e morango.",
-    tamanhos: [
-      ["300 ml", 25],
-      ["400 ml", 30],
-      ["500 ml", 38]
-    ]
-  },
+{
+ nome:"Copo Tradicional",
+ categoria:"acai",
+ descricao:"Açaí ou sorvete, Nutella, leite condensado, fruta, Ninho em pó e granola ou amendoim.",
+ precos:{300:23,400:28,500:35},
+ frutas:true,
+ granola:true
+},
 
-  {
-    categoria: "acai",
-    nome: "Copo Wafer",
-    descricao: "Açaí ou sorvete, Ninho em pó, creme de wafer e morango.",
-    tamanhos: [
-      ["300 ml", 23],
-      ["400 ml", 28],
-      ["500 ml", 35]
-    ]
-  },
+{
+ nome:"Oreotella",
+ categoria:"acai",
+ descricao:"Açaí ou sorvete, trufado de Nutella, leite condensado, Ninho em pó, Oreo, Bis e Biju.",
+ precos:{400:43,500:58}
+},
 
-  {
-    categoria: "acai",
-    nome: "Copo Tradicional",
-    descricao: "Açaí ou sorvete com complementos.",
-    tamanhos: [
-      ["300 ml", 23],
-      ["400 ml", 28],
-      ["500 ml", 35]
-    ]
-  },
+{
+ nome:"Copo Paçoquinha",
+ categoria:"acai",
+ descricao:"Açaí ou sorvete, paçoquinha, leite condensado e pasta de amendoim.",
+ precos:{300:23,400:28,500:35}
+},
 
-  {
-    categoria: "acai",
-    nome: "Copo Tropical",
-    descricao: "Açaí ou sorvete com complementos.",
-    tamanhos: [
-      ["300 ml", 28],
-      ["400 ml", 33],
-      ["500 ml", 38]
-    ]
-  },
+{
+ nome:"Batidinha de Açaí",
+ categoria:"acai",
+ descricao:"Açaí batido com leite condensado. Escolha Ninho em pó ou Paçoca.",
+ precos:{300:14,400:16,500:18,780:21},
+ batidinha:true
+},
 
-  {
-    categoria: "acai",
-    nome: "Copo Vulcão",
-    descricao: "Açaí ou sorvete com complementos.",
-    tamanhos: [
-      ["300 ml", 23],
-      ["400 ml", 28],
-      ["500 ml", 35]
-    ]
-  },
+{
+ nome:"Trufado Flocos Ovomaltine",
+ categoria:"acai",
+ descricao:"Açaí ou sorvete, trufado de Nutella, flocos de Ovomaltine, bombom Ouro Branco, leite condensado e Ninho em pó.",
+ precos:{300:28,400:33,500:41}
+},
 
-  {
-    categoria: "bebidas",
-    nome: "Batidinha de Açaí",
-    descricao: "Batidinha de açaí.",
-    tamanhos: [
-      ["300 ml", 14],
-      ["400 ml", 16],
-      ["500 ml", 18],
-      ["780 ml", 21]
-    ]
-  },
+{
+ nome:"Copo Trufado",
+ categoria:"acai",
+ descricao:"Açaí ou sorvete, trufado de Nutella, Ninho em pó, granola ou amendoim, fruta e leite condensado.",
+ precos:{300:28,400:33,500:41},
+ frutas:true,
+ granola:true
+},
 
-  {
-    categoria: "bebidas",
-    nome: "Milk-Shake",
-    descricao: "Milk-shake nos tamanhos disponíveis.",
-    tamanhos: [
-      ["300 ml", 14],
-      ["400 ml", 16],
-      ["500 ml", 18],
-      ["770 ml", 22]
-    ]
-  }
+{
+ nome:"Dois Amores",
+ categoria:"acai",
+ descricao:"Açaí ou sorvete, creme de Ninho Original, Nutella pura, leite condensado e Ninho em pó.",
+ precos:{300:28,400:36,500:42}
+},
+
+{
+ nome:"Copo Vulcão",
+ categoria:"acai",
+ descricao:"Açaí ou sorvete, leite condensado, Ninho em pó e fruta.",
+ precos:{300:23,400:28,500:35},
+ frutas:true
+},
+
+{
+ nome:"Copo Napolitano",
+ categoria:"acai",
+ descricao:"Açaí ou sorvete, leite condensado, Ninho em pó, creme Leitinho, creme de chocolate e creme de morango.",
+ precos:{300:25,400:30,500:38}
+},
+
+{
+ nome:"Copo Wafer",
+ categoria:"acai",
+ descricao:"Açaí ou sorvete, Ninho em pó, creme de wafer e morango.",
+ precos:{300:23,400:28,500:35}
+},
+
+{
+ nome:"Copo 200ml",
+ categoria:"acai",
+ descricao:"Açaí ou sorvete, Ninho em pó, leite condensado, 1 creme e 1 fruta à escolha.",
+ precos:{200:18},
+ copo200:true
+},
+
+{
+ nome:"Copo Moranguete",
+ categoria:"acai",
+ descricao:"Creme de morango de um lado, creme de Nutella do outro e açaí no meio.",
+ precos:{300:28,400:36,500:42}
+},
+
+{
+ nome:"Milk-Shake",
+ categoria:"milk",
+ descricao:"Escolha seu sabor e tamanho.",
+ precos:{300:14,400:16,500:18,770:22},
+ milk:true
+}
 
 ];
 
-let pedido = [];
-let selecionado = {};
-let filtroAtual = "todos";
+const saboresMilk = [
+"Abacaxi suíço",
+"Abacaxi ao vinho",
+"Bombom",
+"Chocolate",
+"Chocolate Branco",
+"Flocos",
+"Frutas vermelhas",
+"Maracujá trufado",
+"Morango",
+"Ninho trufado",
+"Ovomaltine",
+"Paçoquinha",
+"Unicórnio"
+];
 
-function dinheiro(valor) {
-  return valor.toFixed(2).replace(".", ",");
+const cremes200 = [
+"Creme de Ninho",
+"Leitinho",
+"Wafer branco",
+"Creme de chocolate",
+"Pasta de amendoim",
+"Chocolate",
+"Creme de morango",
+"Avelã"
+];
+
+const frutas = [
+"Morango",
+"Banana",
+"Uvas verdes"
+];
+
+let carrinho = [];
+let produtoAtual = null;
+let config = {};
+
+function dinheiro(valor){
+  return valor.toLocaleString("pt-BR",{
+    style:"currency",
+    currency:"BRL"
+  });
 }
 
-function carregarProdutos() {
+function renderProdutos(filtro="todos"){
 
   const area = document.getElementById("produtos");
 
+  const lista = produtos.filter(p =>
+    filtro === "todos" || p.categoria === filtro
+  );
+
   area.innerHTML = "";
 
-  produtos.forEach((produto, produtoIndex) => {
+  lista.forEach((p,index)=>{
 
-    if (
-      filtroAtual !== "todos" &&
-      produto.categoria !== filtroAtual
-    ) {
-      return;
-    }
+    const precos = Object.entries(p.precos)
+      .map(([tamanho,preco]) => `${tamanho}ml ${dinheiro(preco)}`)
+      .join(" • ");
 
-    const card = document.createElement("div");
+    area.innerHTML += `
+      <div class="card">
 
-    card.className = "produto";
+        <h2>${p.nome}</h2>
 
-    let botoes = "";
+        <div class="description">
+          ${p.descricao}
+        </div>
 
-    produto.tamanhos.forEach((tamanho, tamanhoIndex) => {
+        <div class="price">
+          ${precos}
+        </div>
 
-      botoes += `
-        <button
-          class="tamanho"
-          id="botao-${produtoIndex}-${tamanhoIndex}"
-          onclick="selecionarTamanho(${produtoIndex}, ${tamanhoIndex})"
-        >
-          ${tamanho[0]}<br>
-          R$${dinheiro(tamanho[1])}
+        <button onclick="abrirProduto(${produtos.indexOf(p)})">
+          Escolher
         </button>
-      `;
 
-    });
-
-    card.innerHTML = `
-
-      <h3>${produto.nome}</h3>
-
-      <div class="descricao">
-        ${produto.descricao}
       </div>
-
-      <div class="tamanhos">
-        ${botoes}
-      </div>
-
-      <button
-        class="adicionar"
-        onclick="adicionarProduto(${produtoIndex})"
-      >
-        ➕ Adicionar ao pedido
-      </button>
-
     `;
-
-    area.appendChild(card);
-
   });
-
 }
 
-function filtrar(categoria, botao) {
+function filtrar(tipo,botao){
 
-  filtroAtual = categoria;
+  document.querySelectorAll(".categories button")
+    .forEach(b=>b.classList.remove("active"));
 
-  document
-    .querySelectorAll(".categoria")
-    .forEach(b => b.classList.remove("ativa"));
+  botao.classList.add("active");
 
-  botao.classList.add("ativa");
-
-  carregarProdutos();
-
-  window.scrollTo({
-    top: 250,
-    behavior: "smooth"
-  });
-
+  renderProdutos(tipo);
 }
 
-function selecionarTamanho(produtoIndex, tamanhoIndex) {
+function abrirProduto(index){
 
-  selecionado[produtoIndex] = tamanhoIndex;
+  produtoAtual = produtos[index];
 
-  produtos[produtoIndex].tamanhos.forEach((_, index) => {
+  config = {
+    tamanho:Object.keys(produtoAtual.precos)[0],
+    base:"Açaí",
+    fruta:"",
+    creme:"",
+    complemento:"",
+    sabor:"",
+    nutella:false
+  };
 
-    const botao =
-      document.getElementById(
-        `botao-${produtoIndex}-${index}`
-      );
+  document.getElementById("modalTitulo").innerText =
+    produtoAtual.nome;
 
-    if (!botao) return;
+  document.getElementById("modalDescricao").innerText =
+    produtoAtual.descricao;
 
-    if (index === tamanhoIndex) {
-      botao.classList.add("selecionado");
-    } else {
-      botao.classList.remove("selecionado");
-    }
+  montarConfiguracao();
 
-  });
+  document.getElementById("modalBg").style.display="block";
 
+  atualizarPreco();
 }
 
-function adicionarProduto(produtoIndex) {
+function montarConfiguracao(){
 
-  if (selecionado[produtoIndex] === undefined) {
+  const area = document.getElementById("configuracao");
 
-    alert("Escolha um tamanho primeiro.");
+  let html="";
 
-    return;
-  }
+  html += `<div class="option-title">Tamanho</div>`;
+  html += `<div class="options">`;
 
-  const tamanhoIndex = selecionado[produtoIndex];
-
-  const produto = produtos[produtoIndex];
-
-  const tamanho = produto.tamanhos[tamanhoIndex];
-
-  const nomeCompleto =
-    produto.nome + " - " + tamanho[0];
-
-  const existente = pedido.find(
-    item => item.nome === nomeCompleto
-  );
-
-  if (existente) {
-
-    existente.quantidade++;
-
-  } else {
-
-    pedido.push({
-      nome: nomeCompleto,
-      preco: tamanho[1],
-      quantidade: 1
-    });
-
-  }
-
-  atualizarPedido();
-
-  const carrinho =
-    document.querySelector(".carrinho-flutuante");
-
-  carrinho.animate(
-    [
-      { transform: "scale(1)" },
-      { transform: "scale(1.18)" },
-      { transform: "scale(1)" }
-    ],
-    {
-      duration: 350
-    }
-  );
-
-}
-
-function atualizarPedido() {
-
-  const lista =
-    document.getElementById("listaPedido");
-
-  const contador =
-    document.getElementById("contador");
-
-  let quantidadeTotal = 0;
-
-  pedido.forEach(item => {
-    quantidadeTotal += item.quantidade;
-  });
-
-  contador.innerText = quantidadeTotal;
-
-  if (pedido.length === 0) {
-
-    lista.innerHTML =
-      '<div class="vazio">Seu carrinho está vazio.</div>';
-
-    document.getElementById("total").innerText =
-      "0,00";
-
-    return;
-  }
-
-  let html = "";
-  let total = 0;
-
-  pedido.forEach((item, index) => {
-
-    const subtotal =
-      item.preco * item.quantidade;
-
-    total += subtotal;
+  Object.keys(produtoAtual.precos).forEach(tamanho=>{
 
     html += `
+      <button class="option ${config.tamanho==tamanho?'selected':''}"
+      onclick="selecionar('tamanho','${tamanho}')">
+        ${tamanho}ml<br>
+        ${dinheiro(produtoAtual.precos[tamanho])}
+      </button>
+    `;
+  });
 
-      <div class="item-carrinho">
+  html += `</div>`;
 
-        <div class="item-nome">
-          ${item.nome}
+  if(!produtoAtual.milk){
+
+    html += `<div class="option-title">Base</div>`;
+    html += `<div class="options">`;
+
+    ["Açaí","Sorvete"].forEach(base=>{
+
+      html += `
+        <button class="option ${config.base===base?'selected':''}"
+        onclick="selecionar('base','${base}')">
+          ${base}
+        </button>
+      `;
+    });
+
+    html += `</div>`;
+  }
+
+  if(produtoAtual.milk){
+
+    html += `<div class="option-title">Sabor do Milk-Shake</div>`;
+    html += `<div class="options">`;
+
+    saboresMilk.forEach(sabor=>{
+
+      html += `
+        <button class="option ${config.sabor===sabor?'selected':''}"
+        onclick="selecionar('sabor','${sabor}')">
+          ${sabor}
+        </button>
+      `;
+    });
+
+    html += `</div>`;
+  }
+
+  if(produtoAtual.batidinha){
+
+    html += `<div class="option-title">Escolha o complemento</div>`;
+    html += `<div class="options">`;
+
+    ["Ninho em pó","Paçoca"].forEach(opcao=>{
+
+      html += `
+        <button class="option ${config.complemento===opcao?'selected':''}"
+        onclick="selecionar('complemento','${opcao}')">
+          ${opcao}
+        </button>
+      `;
+    });
+
+    html += `</div>`;
+  }
+
+  if(produtoAtual.frutas){
+
+    html += `<div class="option-title">Escolha a fruta</div>`;
+    html += `<div class="options">`;
+
+    frutas.forEach(fruta=>{
+
+      html += `
+        <button class="option ${config.fruta===fruta?'selected':''}"
+        onclick="selecionar('fruta','${fruta}')">
+          ${fruta}
+        </button>
+      `;
+    });
+
+    html += `</div>`;
+  }
+
+  if(produtoAtual.granola){
+
+    html += `<div class="option-title">Complemento</div>`;
+    html += `<div class="options">`;
+
+    ["Granola","Amendoim"].forEach(opcao=>{
+
+      html += `
+        <button class="option ${config.complemento===opcao?'selected':''}"
+        onclick="selecionar('complemento','${opcao}')">
+          ${opcao}
+        </button>
+      `;
+    });
+
+    html += `</div>`;
+  }
+
+  if(produtoAtual.copo200){
+
+    html += `<div class="option-title">Escolha 1 creme</div>`;
+    html += `<div class="options">`;
+
+    cremes200.forEach(creme=>{
+
+      html += `
+        <button class="option ${config.creme===creme?'selected':''}"
+        onclick="selecionar('creme','${creme}')">
+          ${creme}
+        </button>
+      `;
+    });
+
+    html += `</div>`;
+
+    html += `<div class="option-title">Escolha 1 fruta</div>`;
+    html += `<div class="options">`;
+
+    frutas.forEach(fruta=>{
+
+      html += `
+        <button class="option ${config.fruta===fruta?'selected':''}"
+        onclick="selecionar('fruta','${fruta}')">
+          ${fruta}
+        </button>
+      `;
+    });
+
+    html += `</div>`;
+
+    html += `
+      <div class="option-title">Adicional</div>
+
+      <label class="addon">
+
+        <input type="checkbox"
+        ${config.nutella ? "checked" : ""}
+        onchange="config.nutella=this.checked; atualizarPreco()">
+
+        <span>
+          🍫 Adicionar Nutella
+          <strong>+R$ 2,00</strong>
+        </span>
+
+      </label>
+    `;
+  }
+
+  area.innerHTML=html;
+}
+
+function selecionar(campo,valor){
+
+  config[campo]=valor;
+
+  montarConfiguracao();
+
+  atualizarPreco();
+}
+
+function atualizarPreco(){
+
+  let preco = produtoAtual.precos[config.tamanho];
+
+  if(produtoAtual.copo200 && config.nutella){
+    preco += 2;
+  }
+
+  document.getElementById("modalPreco").innerText =
+    dinheiro(preco);
+}
+
+function validarProduto(){
+
+  if(produtoAtual.milk && !config.sabor){
+    alert("Escolha o sabor do Milk-Shake.");
+    return false;
+  }
+
+  if(produtoAtual.batidinha && !config.complemento){
+    alert("Escolha Ninho em pó ou Paçoca.");
+    return false;
+  }
+
+  if(produtoAtual.frutas && !config.fruta){
+    alert("Escolha a fruta.");
+    return false;
+  }
+
+  if(produtoAtual.copo200){
+
+    if(!config.creme){
+      alert("Escolha 1 creme.");
+      return false;
+    }
+
+    if(!config.fruta){
+      alert("Escolha 1 fruta.");
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function adicionarCarrinho(){
+
+  if(!validarProduto()) return;
+
+  let preco = produtoAtual.precos[config.tamanho];
+
+  if(produtoAtual.copo200 && config.nutella){
+    preco += 2;
+  }
+
+  const detalhes=[];
+
+  if(produtoAtual.milk)
+    detalhes.push(`Sabor: ${config.sabor}`);
+
+  if(!produtoAtual.milk)
+    detalhes.push(`Base: ${config.base}`);
+
+  if(config.fruta)
+    detalhes.push(`Fruta: ${config.fruta}`);
+
+  if(config.creme)
+    detalhes.push(`Creme: ${config.creme}`);
+
+  if(config.complemento)
+    detalhes.push(`Complemento: ${config.complemento}`);
+
+  if(produtoAtual.copo200 && config.nutella)
+    detalhes.push(`Adicional: Nutella +R$ 2,00`);
+
+  carrinho.push({
+    nome:produtoAtual.nome,
+    tamanho:config.tamanho,
+    preco:preco,
+    detalhes:detalhes
+  });
+
+  atualizarCarrinho();
+
+  fecharModal();
+}
+
+function atualizarCarrinho(){
+
+  document.getElementById("contador").innerText =
+    carrinho.length;
+
+  const lista=document.getElementById("listaCarrinho");
+
+  if(carrinho.length===0){
+
+    lista.innerHTML=
+      `<div class="empty">Seu carrinho está vazio.</div>`;
+
+    document.getElementById("totalCarrinho").innerText =
+      dinheiro(0);
+
+    return;
+  }
+
+  lista.innerHTML="";
+
+  let total=0;
+
+  carrinho.forEach((item,index)=>{
+
+    total += item.preco;
+
+    lista.innerHTML += `
+
+      <div class="cart-item">
+
+        <strong>
+          ${index+1}. ${item.nome} — ${item.tamanho}ml
+        </strong>
+
+        <div class="details">
+          ${item.detalhes.join("<br>")}
         </div>
 
-        <div class="item-preco">
-          R$${dinheiro(subtotal)}
-        </div>
+        <div class="item-actions">
 
-        <div class="controles">
+          <span>${dinheiro(item.preco)}</span>
 
-          <button onclick="diminuir(${index})">
-            −
-          </button>
-
-          <span class="quantidade">
-            ${item.quantidade}
-          </span>
-
-          <button onclick="aumentar(${index})">
-            +
-          </button>
-
-          <button
-            class="remover"
-            onclick="remover(${index})">
-            Remover
+          <button onclick="removerItem(${index})">
+            🗑️
           </button>
 
         </div>
 
       </div>
-
     `;
-
   });
 
-  lista.innerHTML = html;
-
-  document.getElementById("total").innerText =
+  document.getElementById("totalCarrinho").innerText =
     dinheiro(total);
-
 }
 
-function aumentar(index) {
+function removerItem(index){
 
-  pedido[index].quantidade++;
+  carrinho.splice(index,1);
 
-  atualizarPedido();
-
+  atualizarCarrinho();
 }
 
-function diminuir(index) {
+function abrirCarrinho(){
 
-  pedido[index].quantidade--;
+  atualizarCarrinho();
 
-  if (pedido[index].quantidade <= 0) {
-    pedido.splice(index, 1);
-  }
-
-  atualizarPedido();
-
+  document.getElementById("cartBox").style.display="block";
 }
 
-function remover(index) {
+function fecharCarrinho(){
 
-  pedido.splice(index, 1);
-
-  atualizarPedido();
-
+  document.getElementById("cartBox").style.display="none";
 }
 
-function limparPedido() {
+function fecharModal(){
 
-  pedido = [];
-
-  selecionado = {};
-
-  document
-    .querySelectorAll(".tamanho")
-    .forEach(botao => {
-      botao.classList.remove("selecionado");
-    });
-
-  atualizarPedido();
-
+  document.getElementById("modalBg").style.display="none";
 }
 
-function irParaPedido() {
+function enviarWhatsApp(){
 
-  document.getElementById("pedido")
-    .scrollIntoView({
-      behavior: "smooth"
-    });
+  if(carrinho.length===0){
 
-}
-
-function enviarWhatsApp() {
-
-  if (pedido.length === 0) {
-
-    alert("Adicione pelo menos um produto ao pedido.");
-
+    alert("Adicione algum produto ao carrinho primeiro.");
     return;
   }
 
-  const nome =
-    document.getElementById("nome")
-    .value
-    .trim();
-
-  const endereco =
-    document.getElementById("endereco")
-    .value
-    .trim();
-
   let mensagem =
-    "Olá! Quero fazer um pedido na D&N Açaí BES 🍇\n\n";
+    "🍇 *NOVO PEDIDO — D&N AÇAÍ BES*%0A%0A";
 
-  if (nome) {
+  let total=0;
 
-    mensagem +=
-      "Nome: " + nome + "\n";
+  carrinho.forEach((item,index)=>{
 
-  }
-
-  mensagem += "\nPedido:\n";
-
-  let total = 0;
-
-  pedido.forEach((item, index) => {
-
-    const subtotal =
-      item.preco * item.quantidade;
-
-    total += subtotal;
+    total += item.preco;
 
     mensagem +=
-      (index + 1) + ". " +
-      item.nome +
-      " x" +
-      item.quantidade +
-      " - R$" +
-      dinheiro(subtotal) +
-      "\n";
+      `*${index+1}. ${item.nome} — ${item.tamanho}ml*%0A`;
 
+    item.detalhes.forEach(detalhe=>{
+
+      mensagem += `• ${detalhe}%0A`;
+
+    });
+
+    mensagem +=
+      `💰 ${dinheiro(item.preco)}%0A%0A`;
   });
 
   mensagem +=
-    "\nTotal: R$" +
-    dinheiro(total);
+    `*TOTAL: ${dinheiro(total)}*%0A%0A`;
 
-  if (endereco) {
+  mensagem +=
+    "Olá! Gostaria de confirmar este pedido. 😊";
 
-    mensagem +=
-      "\n\nEndereço para entrega: " +
-      endereco;
-
-  } else {
-
-    mensagem +=
-      "\n\nEndereço para entrega: ";
-
-  }
-
-  const url =
-    "https://wa.me/5516996194221?text=" +
-    encodeURIComponent(mensagem);
-
-  window.open(url, "_blank");
-
+  window.open(
+    `https://wa.me/${WHATSAPP}?text=${mensagem}`,
+    "_blank"
+  );
 }
 
-carregarProdutos();
-
-atualizarPedido();
+renderProdutos();
 
 </script>
 
