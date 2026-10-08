@@ -3,1067 +3,397 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>D&N Açaí BES 🍇</title>
+<meta name="theme-color" content="#080808">
+<meta name="description" content="Empório Revoada Drinks — bebidas, gelo, carvão e pedidos pelo WhatsApp.">
+<title>Empório Revoada Drinks | Sua próxima Revoada</title>
 
 <style>
-
-* {
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
+:root {
+  --preto:#080808;
+  --card:#151515;
+  --dourado:#ffbd24;
+  --amarelo:#ffdc65;
+  --branco:#fffaf0;
+  --cinza:#bdb7aa;
+  --verde:#25d366;
 }
-
-html {
-  scroll-behavior: smooth;
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--preto);color:var(--branco);font-family:Arial,Helvetica,sans-serif}
+a{text-decoration:none;color:inherit}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+.container{width:min(1120px,92%);margin:auto}
+.topbar{padding:9px;text-align:center;background:#111;font-size:12px;color:var(--amarelo);border-bottom:1px solid #302719}
+header{position:sticky;top:0;z-index:10;background:#090909ed;backdrop-filter:blur(12px);border-bottom:1px solid #3b2d12}
+.nav{min-height:75px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{height:49px;width:49px;border:2px solid var(--dourado);border-radius:50%;display:grid;place-items:center;font-size:27px;background:radial-gradient(#3a290d,#090909)}
+.brand strong{display:block;font-size:16px;letter-spacing:1px}
+.brand small{display:block;font-size:10px;letter-spacing:2px;color:var(--dourado);margin-top:5px}
+.navlinks{display:flex;gap:20px;font-size:14px}
+.navlinks a:hover{color:var(--dourado)}
+button,.btn{transition:.2s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:13px 18px;border:0;border-radius:8px;background:linear-gradient(135deg,#ffdc65,#e9a800);color:#111;font-weight:bold}
+.btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.cart-button{background:#201a0d;color:var(--dourado);border:1px solid #70531d;border-radius:8px;padding:11px 13px;font-weight:bold}
+.hero{padding:65px 0 55px;background:radial-gradient(ellipse at 80% 20%,#6d420d50,transparent 45%),linear-gradient(120deg,#080808,#171108,#080808);border-bottom:1px solid #38280e}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:30px}
+.kicker{font-size:12px;color:var(--dourado);font-weight:bold;letter-spacing:3px;text-transform:uppercase}
+h1{font-size:clamp(40px,6vw,70px);line-height:.98;letter-spacing:-2px;margin:17px 0}
+h1 span{color:var(--dourado)}
+.hero p{max-width:520px;color:#c9c1b3;line-height:1.7}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:25px}
+.btn-outline{display:inline-flex;align-items:center;justify-content:center;padding:12px 17px;border:1px solid #9b752b;border-radius:8px;color:var(--amarelo);background:transparent;font-weight:bold}
+.hero-art{min-height:315px;border:1px solid #70521d;border-radius:20px;padding:26px;background:radial-gradient(circle at 50% 35%,#63400d55,transparent 48%),linear-gradient(145deg,#201707,#090909 70%);display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 15px 50px #0008;position:relative;overflow:hidden}
+.hero-art:after{content:"✦";position:absolute;font-size:180px;right:-15px;top:-40px;color:#ffbd240b}
+.owl{font-size:70px;filter:drop-shadow(0 0 18px #ffbd2455)}
+.hero-art h2{font-size:37px;color:var(--dourado);margin:5px 0}
+.hero-art p{margin:0;font-size:13px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.pill{border:1px solid #44351b;padding:8px 11px;border-radius:7px;font-size:12px;color:#ead9ab}
+section{padding:45px 0}
+.section-title{margin-bottom:23px}
+.section-title .kicker{margin-bottom:8px}
+h2{font-size:clamp(26px,4vw,35px);margin:0 0 9px}
+.section-title p{color:var(--cinza);margin:0;line-height:1.5}
+.search{width:100%;padding:14px 15px;background:#151515;border:1px solid #3c3324;border-radius:10px;color:white;outline:none;margin-bottom:16px}
+.search:focus{border-color:var(--dourado)}
+.categories{display:flex;gap:8px;overflow-x:auto;padding-bottom:15px}
+.category{white-space:nowrap;background:#161616;color:#e9e0d0;border:1px solid #403525;border-radius:30px;padding:10px 15px}
+.category.active,.category:hover{background:var(--dourado);color:#111;border-color:var(--dourado);font-weight:bold}
+.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+.product{border:1px solid #342b1d;background:linear-gradient(145deg,#191919,#101010);border-radius:13px;overflow:hidden;display:flex;flex-direction:column;transition:.2s}
+.product:hover{transform:translateY(-3px);border-color:#8d6822}
+.product-image{height:125px;display:grid;place-items:center;font-size:57px;background:radial-gradient(circle at center bottom,#5b3b1740,transparent 70%),#121212;border-bottom:1px solid #30271a}
+.product-content{padding:13px;display:flex;flex-direction:column;flex:1}
+.product h3{font-size:15px;margin:0 0 8px}
+.product p{font-size:12px;line-height:1.5;color:var(--cinza);margin:0 0 13px;flex:1}
+.price{font-size:18px;color:var(--amarelo);font-weight:bold;margin-bottom:12px}
+.add{padding:11px;border:1px solid #78591e;border-radius:7px;background:#211a0c;color:var(--amarelo);font-weight:bold}
+.add:hover{background:var(--dourado);color:#111}
+.disclaimer{margin-top:20px;padding:14px;border:1px solid #493719;background:#171208;border-radius:9px;font-size:12px;color:#d5c9ac;line-height:1.6}
+.features{background:linear-gradient(120deg,#171208,#0d0d0d);border-top:1px solid #35270f;border-bottom:1px solid #35270f}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.feature{padding:22px;border:1px solid #392f20;border-radius:12px;background:#0d0d0d}
+.feature .icon{font-size:29px}
+.feature h3{font-size:16px;color:var(--dourado);margin:12px 0 8px}
+.feature p{font-size:13px;line-height:1.6;color:var(--cinza);margin:0}
+footer{padding:30px 0 100px;color:var(--cinza);font-size:12px}
+.footer-inner{border-top:1px solid #302719;padding-top:20px;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;line-height:1.7}
+.float-wa{position:fixed;bottom:16px;right:15px;z-index:15;background:var(--verde);color:#05280f;font-weight:bold;padding:14px 18px;border-radius:30px;box-shadow:0 5px 22px #0009}
+.overlay{position:fixed;inset:0;z-index:30;background:#000b;display:none}
+.overlay.show{display:block}
+.drawer{position:absolute;right:0;top:0;height:100%;overflow:auto;width:min(470px,100%);background:#101010;border-left:1px solid #60451b;padding:20px;display:flex;flex-direction:column}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #352b1d;padding-bottom:15px}
+.drawer-head h2{font-size:23px;margin:0}
+.close{background:#222;color:white;border:1px solid #49402f;border-radius:7px;padding:9px 12px}
+.cart-items{flex:1}
+.empty{text-align:center;color:var(--cinza);padding:40px 5px;line-height:1.7}
+.cart-item{display:flex;justify-content:space-between;gap:12px;padding:15px 0;border-bottom:1px solid #30291e}
+.cart-item b{font-size:14px}
+.cart-item small{display:block;color:var(--dourado);margin-top:6px}
+.qty{display:flex;align-items:center;gap:9px;margin-top:10px}
+.qty button{width:28px;height:28px;border-radius:6px;background:#272015;color:var(--dourado);border:1px solid #57421c}
+.remove{display:block;background:none;border:0;color:#aaa;text-decoration:underline;font-size:12px;margin-top:8px}
+.total{display:flex;justify-content:space-between;padding:17px 0;border-top:1px solid #493719;font-size:19px;font-weight:bold}
+.checkout{display:grid;gap:11px}
+.checkout label{font-size:12px;color:#d5cbb8}
+.checkout input,.checkout textarea{width:100%;margin-top:5px;background:#1b1b1b;border:1px solid #41372a;border-radius:8px;padding:12px;color:white}
+.checkout textarea{resize:vertical;min-height:65px}
+.checkout .btn{width:100%;padding:14px}
+.note{font-size:11px;color:#aaa;line-height:1.5}
+@media(max-width:800px){
+ .navlinks{display:none}.hero-grid{grid-template-columns:1fr}.hero-art{min-height:230px}
+ .products{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .feature-grid{grid-template-columns:1fr}
 }
-
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background:
-    radial-gradient(circle at top left, #f5d9ff 0%, transparent 35%),
-    linear-gradient(180deg, #fbf7ff 0%, #f4eafa 100%);
-  color: #24152f;
+@media(max-width:390px){
+ .brand strong{font-size:12px}.brand small{font-size:8px;letter-spacing:1px}
+ .logo{width:42px;height:42px}.cart-button{font-size:12px;padding:10px}
+ .products{gap:9px}.product-content{padding:10px}.product-image{height:100px}
 }
-
-/* ===== CAPA ===== */
-
-.hero {
-  position: relative;
-  overflow: hidden;
-  color: white;
-  text-align: center;
-  padding: 38px 18px 42px;
-  border-radius: 0 0 35px 35px;
-  background:
-    radial-gradient(circle at 20% 20%, #d85cff 0%, transparent 28%),
-    radial-gradient(circle at 85% 30%, #ff55b8 0%, transparent 25%),
-    linear-gradient(135deg, #39005d, #7200a8, #a800c9);
-  box-shadow: 0 12px 35px rgba(91, 0, 130, .30);
-}
-
-.hero::before,
-.hero::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(3px);
-  opacity: .25;
-}
-
-.hero::before {
-  width: 150px;
-  height: 150px;
-  background: white;
-  top: -80px;
-  left: -60px;
-}
-
-.hero::after {
-  width: 180px;
-  height: 180px;
-  background: #ff8be8;
-  bottom: -110px;
-  right: -60px;
-}
-
-.logo {
-  position: relative;
-  z-index: 2;
-  font-size: 58px;
-  animation: flutuar 3s ease-in-out infinite;
-}
-
-.hero h1 {
-  position: relative;
-  z-index: 2;
-  margin: 5px 0 8px;
-  font-size: 34px;
-  letter-spacing: -1px;
-}
-
-.hero p {
-  position: relative;
-  z-index: 2;
-  margin: 0 auto;
-  max-width: 400px;
-  font-size: 15px;
-  line-height: 1.5;
-  opacity: .95;
-}
-
-.botao-comecar {
-  position: relative;
-  z-index: 2;
-  display: inline-block;
-  margin-top: 22px;
-  padding: 14px 24px;
-  border-radius: 50px;
-  background: white;
-  color: #69008f;
-  font-weight: bold;
-  text-decoration: none;
-  box-shadow: 0 8px 25px rgba(0,0,0,.18);
-  transition: .2s;
-}
-
-.botao-comecar:active {
-  transform: scale(.95);
-}
-
-@keyframes flutuar {
-  0%,100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-7px);
-  }
-}
-
-/* ===== CONTAINER ===== */
-
-.container {
-  width: 100%;
-  max-width: 760px;
-  margin: auto;
-  padding: 16px;
-}
-
-.titulo {
-  margin: 28px 0 14px;
-  color: #5b1688;
-  font-size: 25px;
-}
-
-/* ===== CATEGORIAS ===== */
-
-.categorias {
-  display: flex;
-  gap: 9px;
-  overflow-x: auto;
-  padding: 4px 0 12px;
-  scrollbar-width: none;
-}
-
-.categorias::-webkit-scrollbar {
-  display: none;
-}
-
-.categoria {
-  flex: 0 0 auto;
-  border: 0;
-  border-radius: 50px;
-  padding: 11px 18px;
-  background: white;
-  color: #641681;
-  font-weight: bold;
-  box-shadow: 0 4px 15px rgba(70,20,90,.10);
-  cursor: pointer;
-}
-
-.categoria.ativa {
-  color: white;
-  background: linear-gradient(135deg, #65008c, #b000d1);
-  box-shadow: 0 6px 18px rgba(111,0,145,.25);
-}
-
-/* ===== PRODUTOS ===== */
-
-.produto {
-  position: relative;
-  overflow: hidden;
-  background: rgba(255,255,255,.92);
-  border-radius: 24px;
-  padding: 20px;
-  margin: 16px 0;
-  border: 1px solid #ead8f1;
-  box-shadow: 0 7px 25px rgba(70,20,90,.10);
-  transition: transform .2s, box-shadow .2s;
-}
-
-.produto::before {
-  content: "";
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: #edb7ff;
-  opacity: .15;
-  right: -45px;
-  top: -45px;
-}
-
-.produto:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(70,20,90,.15);
-}
-
-.produto h3 {
-  position: relative;
-  margin: 0 0 8px;
-  color: #5b1688;
-  font-size: 21px;
-}
-
-.descricao {
-  color: #66586d;
-  line-height: 1.5;
-  font-size: 14px;
-  margin-bottom: 16px;
-}
-
-.tamanhos {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.tamanho {
-  flex: 1;
-  min-width: 88px;
-  border: 2px solid #7b1fa2;
-  background: white;
-  color: #6a1b9a;
-  border-radius: 14px;
-  padding: 11px 7px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: .18s;
-}
-
-.tamanho.selecionado {
-  color: white;
-  background: linear-gradient(135deg, #65108d, #a900c7);
-  border-color: #7b1fa2;
-  box-shadow: 0 5px 15px rgba(105,0,145,.22);
-}
-
-.tamanho:active {
-  transform: scale(.94);
-}
-
-.adicionar {
-  width: 100%;
-  margin-top: 13px;
-  padding: 13px;
-  border: 0;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #5b1688, #a900c7);
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow: 0 5px 15px rgba(90,0,120,.20);
-}
-
-.adicionar:active {
-  transform: scale(.98);
-}
-
-/* ===== PEDIDO ===== */
-
-#pedido {
-  background: white;
-  border-radius: 25px;
-  padding: 21px;
-  margin: 35px 0 20px;
-  border: 2px solid #eadcf2;
-  box-shadow: 0 8px 28px rgba(70,20,90,.13);
-}
-
-#pedido h2 {
-  margin-top: 0;
-  color: #5b1688;
-}
-
-.item-carrinho {
-  border-bottom: 1px solid #eee;
-  padding: 14px 0;
-}
-
-.item-nome {
-  font-weight: bold;
-  color: #3d2945;
-}
-
-.item-preco {
-  color: #6a1b9a;
-  margin: 5px 0;
-}
-
-.controles {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  margin-top: 8px;
-}
-
-.controles button {
-  width: 36px;
-  height: 36px;
-  border: 0;
-  border-radius: 10px;
-  background: #eee2f4;
-  color: #5b1688;
-  font-size: 20px;
-}
-
-.quantidade {
-  font-weight: bold;
-  min-width: 20px;
-  text-align: center;
-}
-
-.remover {
-  margin-left: auto;
-  width: auto !important;
-  padding: 8px 10px !important;
-  font-size: 13px !important;
-  background: #ffe5e5 !important;
-  color: #b00020 !important;
-}
-
-.total {
-  padding: 17px 0;
-  font-size: 25px;
-  font-weight: bold;
-  color: #4b0870;
-}
-
-.campo {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 10px;
-  border: 1px solid #ddd;
-  border-radius: 13px;
-  font-size: 15px;
-  outline: none;
-}
-
-.campo:focus {
-  border-color: #8e24aa;
-  box-shadow: 0 0 0 3px rgba(142,36,170,.08);
-}
-
-.whatsapp {
-  width: 100%;
-  padding: 16px;
-  border: 0;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #18b957, #25d366);
-  color: white;
-  font-size: 17px;
-  font-weight: bold;
-  box-shadow: 0 7px 18px rgba(37,211,102,.25);
-}
-
-.limpar {
-  width: 100%;
-  margin-top: 9px;
-  padding: 12px;
-  border: 0;
-  border-radius: 13px;
-  background: #eee9ef;
-  color: #44394a;
-}
-
-.vazio {
-  color: #777;
-  text-align: center;
-  padding: 12px 0;
-}
-
-/* ===== CARRINHO FLUTUANTE ===== */
-
-.carrinho-flutuante {
-  position: fixed;
-  z-index: 20;
-  right: 16px;
-  bottom: 18px;
-  width: 58px;
-  height: 58px;
-  border: 0;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #65008c, #b000d1);
-  color: white;
-  font-size: 25px;
-  box-shadow: 0 8px 25px rgba(76,0,100,.35);
-  cursor: pointer;
-}
-
-.contador {
-  position: absolute;
-  top: -3px;
-  right: -3px;
-  min-width: 21px;
-  height: 21px;
-  padding: 2px 5px;
-  border-radius: 50px;
-  background: #ff315f;
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-/* ===== RODAPÉ ===== */
-
-.rodape {
-  text-align: center;
-  color: #76687b;
-  font-size: 13px;
-  line-height: 1.6;
-  padding: 25px 20px 90px;
-}
-
-/* ===== CELULAR ===== */
-
-@media (max-width: 500px) {
-
-  .hero {
-    padding-top: 30px;
-  }
-
-  .hero h1 {
-    font-size: 29px;
-  }
-
-  .logo {
-    font-size: 52px;
-  }
-
-  .container {
-    padding: 12px;
-  }
-
-  .produto {
-    padding: 17px;
-  }
-
-  .tamanho {
-    min-width: 85px;
-  }
-}
-
 </style>
 </head>
 
 <body>
+<div class="topbar">📍 Boa Esperança do Sul • Consulte disponibilidade e entrega pelo WhatsApp</div>
 
-<header class="hero">
-
-  <div class="logo">🍇</div>
-
-  <h1>D&N Açaí BES</h1>
-
-  <p>
-    Seu açaí do seu jeito 💜<br>
-    Escolha, monte seu pedido e peça pelo WhatsApp.
-  </p>
-
-  <a href="#produtos" class="botao-comecar">
-    🍧 Montar meu pedido
-  </a>
-
+<header>
+  <div class="container nav">
+    <a class="brand" href="#inicio">
+      <div class="logo">🦉</div>
+      <div><strong>EMPÓRIO REVOADA</strong><small>DRINKS • BOA ESPERANÇA DO SUL</small></div>
+    </a>
+    <nav class="navlinks">
+      <a href="#catalogo">Catálogo</a>
+      <a href="#entrega">Como pedir</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <button class="cart-button" onclick="openCart()">🛒 Carrinho (<span id="cartCount">0</span>)</button>
+  </div>
 </header>
 
-<div class="container">
-
-  <h2 class="titulo">Escolha o que você quer 😋</h2>
-
-  <div class="categorias">
-
-    <button
-      class="categoria ativa"
-      onclick="filtrar('todos', this)">
-      ✨ Todos
-    </button>
-
-    <button
-      class="categoria"
-      onclick="filtrar('acai', this)">
-      🍇 Açaí
-    </button>
-
-    <button
-      class="categoria"
-      onclick="filtrar('bebidas', this)">
-      🥤 Bebidas
-    </button>
-
-  </div>
-
-  <div id="produtos"></div>
-
-  <div id="pedido">
-
-    <h2>🛒 Seu pedido</h2>
-
-    <div id="listaPedido">
-
-      <div class="vazio">
-        Seu carrinho está vazio.
+<main>
+  <section class="hero" id="inicio">
+    <div class="container hero-grid">
+      <div>
+        <div class="kicker">Empório Revoada Drinks</div>
+        <h1>Seu pedido.<br><span>Seu momento.</span><br>Sem sair de casa.</h1>
+        <p>Bebidas, gelo, carvão e muito mais para acompanhar seus momentos. Escolha seus produtos, monte o pedido e fale com a equipe pelo WhatsApp.</p>
+        <div class="actions">
+          <a href="#catalogo" class="btn">🛍️ Ver catálogo</a>
+          <button class="btn-outline" onclick="contactWhatsApp()">Falar pelo WhatsApp ↗</button>
+        </div>
+        <div class="pills">
+          <span class="pill">🚚 Consulte a entrega</span>
+          <span class="pill">🧊 Gelo</span>
+          <span class="pill">🔥 Carvão</span>
+        </div>
       </div>
-
+      <div class="hero-art">
+        <div>
+          <div class="owl">🦉</div>
+          <div class="kicker">Qualidade para seu momento</div>
+          <h2>REVOADA</h2>
+          <p>BEBIDAS • AMIZADE • BONS MOMENTOS</p>
+        </div>
+        <p>🍻 Bebidas &nbsp; • &nbsp; 🧊 Gelo &nbsp; • &nbsp; 🔥 Carvão</p>
+      </div>
     </div>
+  </section>
 
-    <div class="total">
-      Total: R$ <span id="total">0,00</span>
+  <section id="catalogo">
+    <div class="container">
+      <div class="section-title">
+        <div class="kicker">Encontre o que procura</div>
+        <h2>Nosso catálogo</h2>
+        <p>Escolha os produtos e adicione ao seu carrinho.</p>
+      </div>
+      <input class="search" id="search" type="search" placeholder="🔎 Buscar produto..." oninput="renderProducts()">
+      <div class="categories" id="categories"></div>
+      <div class="products" id="products"></div>
+      <div class="disclaimer"><b>⚠️ Catálogo demonstrativo:</b> produtos e preços são apenas exemplos e ainda precisam ser confirmados pelo estabelecimento. Consulte disponibilidade, valor atualizado, taxa e prazo de entrega antes de concluir o pedido.</div>
     </div>
+  </section>
 
-    <input
-      class="campo"
-      id="nome"
-      type="text"
-      placeholder="Seu nome"
-    >
+  <section class="features" id="entrega">
+    <div class="container">
+      <div class="section-title">
+        <div class="kicker">Prático e fácil</div>
+        <h2>Como funciona</h2>
+      </div>
+      <div class="feature-grid">
+        <div class="feature"><div class="icon">🛒</div><h3>1. Escolha seus produtos</h3><p>Adicione itens ao carrinho, ajuste as quantidades e confira o total estimado.</p></div>
+        <div class="feature"><div class="icon">📲</div><h3>2. Envie seu pedido</h3><p>O site prepara uma mensagem com os produtos para você enviar pelo WhatsApp.</p></div>
+        <div class="feature"><div class="icon">🛵</div><h3>3. Combine a entrega</h3><p>Confirme com a equipe o estoque, o endereço, o prazo, a taxa e a forma de pagamento.</p></div>
+      </div>
+    </div>
+  </section>
 
-    <input
-      class="campo"
-      id="endereco"
-      type="text"
-      placeholder="Endereço para entrega"
-    >
+  <section id="contato">
+    <div class="container">
+      <div class="section-title">
+        <div class="kicker">Fale com a equipe</div>
+        <h2>Empório Revoada Drinks</h2>
+        <p>Consulte produtos, preços e disponibilidade diretamente com a loja.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature"><div class="icon">📍</div><h3>Nosso endereço</h3><p>Avenida dos Nogueira, nº 340<br>Boa Esperança do Sul — SP</p></div>
+        <div class="feature"><div class="icon">💬</div><h3>Pedidos pelo WhatsApp</h3><p>Entre em contato para confirmar seu pedido e combinar a entrega.</p><br><button class="btn" onclick="contactWhatsApp()">Chamar agora ↗</button></div>
+        <div class="feature"><div class="icon">🕒</div><h3>Atendimento</h3><p>Consulte os horários de funcionamento diretamente com o estabelecimento.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
 
-    <button
-      class="whatsapp"
-      onclick="enviarWhatsApp()">
-      📲 Enviar pedido pelo WhatsApp
-    </button>
-
-    <button
-      class="limpar"
-      onclick="limparPedido()">
-      🗑️ Limpar pedido
-    </button>
-
+<footer>
+  <div class="container footer-inner">
+    <div><b style="color:var(--dourado)">EMPÓRIO REVOADA DRINKS</b><br>Catálogo e pedidos online.</div>
+    <div>Preços e disponibilidade sujeitos à confirmação.<br>Venda de bebidas alcoólicas proibida para menores de 18 anos.</div>
   </div>
+</footer>
 
-</div>
+<button class="float-wa" onclick="contactWhatsApp()">WhatsApp ↗</button>
 
-<button
-  class="carrinho-flutuante"
-  onclick="irParaPedido()">
-
-  🛒
-
-  <span
-    class="contador"
-    id="contador">
-    0
-  </span>
-
-</button>
-
-<div class="rodape">
-
-  D&N Açaí BES 💜<br>
-  Pedido rápido, fácil e direto pelo WhatsApp
-
+<div class="overlay" id="overlay" onclick="if(event.target===this)closeCart()">
+  <aside class="drawer" role="dialog" aria-modal="true" aria-label="Carrinho de compras">
+    <div class="drawer-head"><h2>🛒 Seu carrinho</h2><button class="close" onclick="closeCart()">Fechar ✕</button></div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="total"><span>Total estimado</span><span id="cartTotal">R$ 0,00</span></div>
+    <form class="checkout" onsubmit="sendOrder(event)">
+      <label>Seu nome<input id="customerName" required maxlength="70" placeholder="Como podemos te chamar?"></label>
+      <label>Endereço para entrega<input id="customerAddress" required maxlength="160" placeholder="Rua, número e bairro"></label>
+      <label>Complemento ou referência (opcional)<input id="customerReference" maxlength="120" placeholder="Casa, portão ou ponto de referência"></label>
+      <label>Observações (opcional)<textarea id="customerNotes" maxlength="300" placeholder="Alguma observação para o pedido?"></textarea></label>
+      <button type="submit" class="btn">Enviar pedido pelo WhatsApp ↗</button>
+      <div class="note">O WhatsApp será aberto com a mensagem pronta para revisão. A loja precisa confirmar o estoque, os preços, a entrega e o pagamento. Este site não processa pagamentos.</div>
+    </form>
+  </aside>
 </div>
 
 <script>
+const WHATSAPP_NUMBER = "5516997690018";
 
-const produtos = [
+// ATENÇÃO: produtos e preços abaixo são exemplos de demonstração.
+// Substitua pelos dados reais somente depois de confirmar com o proprietário.
+const categories = ["Todos","Cervejas","Refrigerantes","Destilados","Copão","Gelo","Carvão"];
 
-  {
-    categoria: "acai",
-    nome: "Copo Trufado com Nutella",
-    descricao: "Açaí no meio, trufado/Nutella e frutas à sua escolha.",
-    tamanhos: [
-      ["300 ml", 28],
-      ["400 ml", 33],
-      ["500 ml", 41]
-    ]
-  },
-
-  {
-    categoria: "acai",
-    nome: "Copo Moranguete",
-    descricao: "Creme de morango de um lado, creme de Nutella do outro e açaí no meio.",
-    tamanhos: [
-      ["300 ml", 28],
-      ["400 ml", 36],
-      ["500 ml", 42]
-    ]
-  },
-
-  {
-    categoria: "acai",
-    nome: "Copo Dois Amores",
-    descricao: "Açaí ou sorvete, creme de Ninho original, Nutella pura, leite condensado e Ninho em pó.",
-    tamanhos: [
-      ["300 ml", 28],
-      ["400 ml", 36],
-      ["500 ml", 42]
-    ]
-  },
-
-  {
-    categoria: "acai",
-    nome: "Copo Napolitano",
-    descricao: "Açaí ou sorvete, leite condensado, Ninho em pó, creme Leitinho, chocolate e morango.",
-    tamanhos: [
-      ["300 ml", 25],
-      ["400 ml", 30],
-      ["500 ml", 38]
-    ]
-  },
-
-  {
-    categoria: "acai",
-    nome: "Copo Wafer",
-    descricao: "Açaí ou sorvete, Ninho em pó, creme de wafer e morango.",
-    tamanhos: [
-      ["300 ml", 23],
-      ["400 ml", 28],
-      ["500 ml", 35]
-    ]
-  },
-
-  {
-    categoria: "acai",
-    nome: "Copo Tradicional",
-    descricao: "Açaí ou sorvete com complementos.",
-    tamanhos: [
-      ["300 ml", 23],
-      ["400 ml", 28],
-      ["500 ml", 35]
-    ]
-  },
-
-  {
-    categoria: "acai",
-    nome: "Copo Tropical",
-    descricao: "Açaí ou sorvete com complementos.",
-    tamanhos: [
-      ["300 ml", 28],
-      ["400 ml", 33],
-      ["500 ml", 38]
-    ]
-  },
-
-  {
-    categoria: "acai",
-    nome: "Copo Vulcão",
-    descricao: "Açaí ou sorvete com complementos.",
-    tamanhos: [
-      ["300 ml", 23],
-      ["400 ml", 28],
-      ["500 ml", 35]
-    ]
-  },
-
-  {
-    categoria: "bebidas",
-    nome: "Batidinha de Açaí",
-    descricao: "Batidinha de açaí.",
-    tamanhos: [
-      ["300 ml", 14],
-      ["400 ml", 16],
-      ["500 ml", 18],
-      ["780 ml", 21]
-    ]
-  },
-
-  {
-    categoria: "bebidas",
-    nome: "Milk-Shake",
-    descricao: "Milk-shake nos tamanhos disponíveis.",
-    tamanhos: [
-      ["300 ml", 14],
-      ["400 ml", 16],
-      ["500 ml", 18],
-      ["770 ml", 22]
-    ]
-  }
-
+const products = [
+  {id:1,name:"Cerveja lata — exemplo",category:"Cervejas",price:5,emoji:"🍺",desc:"Marca e volume a confirmar."},
+  {id:2,name:"Cerveja long neck — exemplo",category:"Cervejas",price:8,emoji:"🍻",desc:"Marca e volume a confirmar."},
+  {id:3,name:"Refrigerante 2 L — exemplo",category:"Refrigerantes",price:10,emoji:"🥤",desc:"Sabor e marca a confirmar."},
+  {id:4,name:"Refrigerante lata — exemplo",category:"Refrigerantes",price:5,emoji:"🥤",desc:"Sabor e volume a confirmar."},
+  {id:5,name:"Whisky — exemplo",category:"Destilados",price:80,emoji:"🥃",desc:"Marca e volume a confirmar."},
+  {id:6,name:"Vodka — exemplo",category:"Destilados",price:45,emoji:"🍸",desc:"Marca e volume a confirmar."},
+  {id:7,name:"Copão — exemplo",category:"Copão",price:18,emoji:"🍹",desc:"Sabores e composição a confirmar."},
+  {id:8,name:"Gelo em cubos — exemplo",category:"Gelo",price:8,emoji:"🧊",desc:"Peso e embalagem a confirmar."},
+  {id:9,name:"Carvão — exemplo",category:"Carvão",price:18,emoji:"🔥",desc:"Peso e marca a confirmar."}
 ];
 
-let pedido = [];
-let selecionado = {};
-let filtroAtual = "todos";
+let selectedCategory = "Todos";
+let cart = [];
 
-function dinheiro(valor) {
-  return valor.toFixed(2).replace(".", ",");
+function money(value){
+  return value.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 }
 
-function carregarProdutos() {
-
-  const area = document.getElementById("produtos");
-
-  area.innerHTML = "";
-
-  produtos.forEach((produto, produtoIndex) => {
-
-    if (
-      filtroAtual !== "todos" &&
-      produto.categoria !== filtroAtual
-    ) {
-      return;
-    }
-
-    const card = document.createElement("div");
-
-    card.className = "produto";
-
-    let botoes = "";
-
-    produto.tamanhos.forEach((tamanho, tamanhoIndex) => {
-
-      botoes += `
-        <button
-          class="tamanho"
-          id="botao-${produtoIndex}-${tamanhoIndex}"
-          onclick="selecionarTamanho(${produtoIndex}, ${tamanhoIndex})"
-        >
-          ${tamanho[0]}<br>
-          R$${dinheiro(tamanho[1])}
-        </button>
-      `;
-
-    });
-
-    card.innerHTML = `
-
-      <h3>${produto.nome}</h3>
-
-      <div class="descricao">
-        ${produto.descricao}
-      </div>
-
-      <div class="tamanhos">
-        ${botoes}
-      </div>
-
-      <button
-        class="adicionar"
-        onclick="adicionarProduto(${produtoIndex})"
-      >
-        ➕ Adicionar ao pedido
-      </button>
-
-    `;
-
-    area.appendChild(card);
-
-  });
-
+function renderCategories(){
+  document.getElementById("categories").innerHTML = categories.map(category =>
+    `<button class="category ${category===selectedCategory?"active":""}" onclick="selectCategory('${category}')">${category}</button>`
+  ).join("");
 }
 
-function filtrar(categoria, botao) {
-
-  filtroAtual = categoria;
-
-  document
-    .querySelectorAll(".categoria")
-    .forEach(b => b.classList.remove("ativa"));
-
-  botao.classList.add("ativa");
-
-  carregarProdutos();
-
-  window.scrollTo({
-    top: 250,
-    behavior: "smooth"
-  });
-
+function selectCategory(category){
+  selectedCategory = category;
+  renderCategories();
+  renderProducts();
 }
 
-function selecionarTamanho(produtoIndex, tamanhoIndex) {
-
-  selecionado[produtoIndex] = tamanhoIndex;
-
-  produtos[produtoIndex].tamanhos.forEach((_, index) => {
-
-    const botao =
-      document.getElementById(
-        `botao-${produtoIndex}-${index}`
-      );
-
-    if (!botao) return;
-
-    if (index === tamanhoIndex) {
-      botao.classList.add("selecionado");
-    } else {
-      botao.classList.remove("selecionado");
-    }
-
-  });
-
-}
-
-function adicionarProduto(produtoIndex) {
-
-  if (selecionado[produtoIndex] === undefined) {
-
-    alert("Escolha um tamanho primeiro.");
-
-    return;
-  }
-
-  const tamanhoIndex = selecionado[produtoIndex];
-
-  const produto = produtos[produtoIndex];
-
-  const tamanho = produto.tamanhos[tamanhoIndex];
-
-  const nomeCompleto =
-    produto.nome + " - " + tamanho[0];
-
-  const existente = pedido.find(
-    item => item.nome === nomeCompleto
+function renderProducts(){
+  const term = document.getElementById("search").value.trim().toLocaleLowerCase("pt-BR");
+  const filtered = products.filter(product =>
+    (selectedCategory==="Todos" || product.category===selectedCategory) &&
+    (`${product.name} ${product.category} ${product.desc}`).toLocaleLowerCase("pt-BR").includes(term)
   );
 
-  if (existente) {
-
-    existente.quantidade++;
-
-  } else {
-
-    pedido.push({
-      nome: nomeCompleto,
-      preco: tamanho[1],
-      quantidade: 1
-    });
-
-  }
-
-  atualizarPedido();
-
-  const carrinho =
-    document.querySelector(".carrinho-flutuante");
-
-  carrinho.animate(
-    [
-      { transform: "scale(1)" },
-      { transform: "scale(1.18)" },
-      { transform: "scale(1)" }
-    ],
-    {
-      duration: 350
-    }
-  );
-
+  document.getElementById("products").innerHTML = filtered.length
+    ? filtered.map(product => `
+      <article class="product">
+        <div class="product-image">${product.emoji}</div>
+        <div class="product-content">
+          <h3>${product.name}</h3>
+          <p>${product.desc}</p>
+          <div class="price">${money(product.price)}</div>
+          <button class="add" onclick="addToCart(${product.id})">＋ Adicionar</button>
+        </div>
+      </article>
+    `).join("")
+    : "<p style='color:#bbb'>Nenhum produto encontrado.</p>";
 }
 
-function atualizarPedido() {
+function addToCart(id){
+  const item = cart.find(item=>item.id===id);
+  if(item) item.qty++;
+  else cart.push({id,qty:1});
+  updateCart();
+}
 
-  const lista =
-    document.getElementById("listaPedido");
+function changeQty(id,delta){
+  const item = cart.find(item=>item.id===id);
+  if(!item) return;
+  item.qty += delta;
+  if(item.qty<=0) cart = cart.filter(item=>item.id!==id);
+  updateCart();
+}
 
-  const contador =
-    document.getElementById("contador");
+function removeItem(id){
+  cart = cart.filter(item=>item.id!==id);
+  updateCart();
+}
 
-  let quantidadeTotal = 0;
+function updateCart(){
+  const count = cart.reduce((sum,item)=>sum+item.qty,0);
+  const total = cart.reduce((sum,item)=>sum+products.find(p=>p.id===item.id).price*item.qty,0);
+  document.getElementById("cartCount").textContent = count;
+  document.getElementById("cartTotal").textContent = money(total);
 
-  pedido.forEach(item => {
-    quantidadeTotal += item.quantidade;
-  });
+  document.getElementById("cartItems").innerHTML = cart.length
+    ? cart.map(item=>{
+      const product = products.find(p=>p.id===item.id);
+      return `
+        <div class="cart-item">
+          <div>
+            <b>${product.emoji} ${product.name}</b>
+            <small>${money(product.price)} cada</small>
+            <div class="qty">
+              <button type="button" onclick="changeQty(${item.id},-1)">−</button>
+              <span>${item.qty}</span>
+              <button type="button" onclick="changeQty(${item.id},1)">＋</button>
+            </div>
+          </div>
+          <div style="text-align:right">
+            <b>${money(product.price*item.qty)}</b>
+            <button class="remove" type="button" onclick="removeItem(${item.id})">Remover</button>
+          </div>
+        </div>`;
+    }).join("")
+    : '<div class="empty">Seu carrinho está vazio.<br>Escolha produtos no catálogo para começar.</div>';
+}
 
-  contador.innerText = quantidadeTotal;
+function openCart(){
+  document.getElementById("overlay").classList.add("show");
+  document.body.style.overflow="hidden";
+}
 
-  if (pedido.length === 0) {
+function closeCart(){
+  document.getElementById("overlay").classList.remove("show");
+  document.body.style.overflow="";
+}
 
-    lista.innerHTML =
-      '<div class="vazio">Seu carrinho está vazio.</div>';
+function contactWhatsApp(){
+  const message = "Olá! Gostaria de consultar os produtos, preços e a entrega do Empório Revoada Drinks.";
+  window.open("https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(message),"_blank");
+}
 
-    document.getElementById("total").innerText =
-      "0,00";
-
+function sendOrder(event){
+  event.preventDefault();
+  if(!cart.length){
+    alert("Adicione pelo menos um produto ao carrinho.");
     return;
   }
 
-  let html = "";
-  let total = 0;
+  const name = document.getElementById("customerName").value.trim();
+  const address = document.getElementById("customerAddress").value.trim();
+  const reference = document.getElementById("customerReference").value.trim();
+  const notes = document.getElementById("customerNotes").value.trim();
 
-  pedido.forEach((item, index) => {
-
-    const subtotal =
-      item.preco * item.quantidade;
-
-    total += subtotal;
-
-    html += `
-
-      <div class="item-carrinho">
-
-        <div class="item-nome">
-          ${item.nome}
-        </div>
-
-        <div class="item-preco">
-          R$${dinheiro(subtotal)}
-        </div>
-
-        <div class="controles">
-
-          <button onclick="diminuir(${index})">
-            −
-          </button>
-
-          <span class="quantidade">
-            ${item.quantidade}
-          </span>
-
-          <button onclick="aumentar(${index})">
-            +
-          </button>
-
-          <button
-            class="remover"
-            onclick="remover(${index})">
-            Remover
-          </button>
-
-        </div>
-
-      </div>
-
-    `;
-
+  const lines = cart.map(item=>{
+    const product = products.find(p=>p.id===item.id);
+    return `• ${item.qty}x ${product.name} — ${money(product.price*item.qty)}`;
   });
 
-  lista.innerHTML = html;
+  const total = cart.reduce((sum,item)=>sum+products.find(p=>p.id===item.id).price*item.qty,0);
 
-  document.getElementById("total").innerText =
-    dinheiro(total);
+  const message =
+`Olá! Quero fazer um pedido no Empório Revoada Drinks.
 
+*MEU PEDIDO*
+${lines.join("\n")}
+
+*Total estimado dos produtos:* ${money(total)}
+*Nome:* ${name}
+*Endereço:* ${address}`+
+(reference ? `\n*Referência:* ${reference}` : "")+
+(notes ? `\n*Observações:* ${notes}` : "")+
+`\n\nPor favor, confirmem disponibilidade, preços, taxa e prazo de entrega e formas de pagamento.`;
+
+  window.open("https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent(message),"_blank");
 }
 
-function aumentar(index) {
-
-  pedido[index].quantidade++;
-
-  atualizarPedido();
-
-}
-
-function diminuir(index) {
-
-  pedido[index].quantidade--;
-
-  if (pedido[index].quantidade <= 0) {
-    pedido.splice(index, 1);
-  }
-
-  atualizarPedido();
-
-}
-
-function remover(index) {
-
-  pedido.splice(index, 1);
-
-  atualizarPedido();
-
-}
-
-function limparPedido() {
-
-  pedido = [];
-
-  selecionado = {};
-
-  document
-    .querySelectorAll(".tamanho")
-    .forEach(botao => {
-      botao.classList.remove("selecionado");
-    });
-
-  atualizarPedido();
-
-}
-
-function irParaPedido() {
-
-  document.getElementById("pedido")
-    .scrollIntoView({
-      behavior: "smooth"
-    });
-
-}
-
-function enviarWhatsApp() {
-
-  if (pedido.length === 0) {
-
-    alert("Adicione pelo menos um produto ao pedido.");
-
-    return;
-  }
-
-  const nome =
-    document.getElementById("nome")
-    .value
-    .trim();
-
-  const endereco =
-    document.getElementById("endereco")
-    .value
-    .trim();
-
-  let mensagem =
-    "Olá! Quero fazer um pedido na D&N Açaí BES 🍇\n\n";
-
-  if (nome) {
-
-    mensagem +=
-      "Nome: " + nome + "\n";
-
-  }
-
-  mensagem += "\nPedido:\n";
-
-  let total = 0;
-
-  pedido.forEach((item, index) => {
-
-    const subtotal =
-      item.preco * item.quantidade;
-
-    total += subtotal;
-
-    mensagem +=
-      (index + 1) + ". " +
-      item.nome +
-      " x" +
-      item.quantidade +
-      " - R$" +
-      dinheiro(subtotal) +
-      "\n";
-
-  });
-
-  mensagem +=
-    "\nTotal: R$" +
-    dinheiro(total);
-
-  if (endereco) {
-
-    mensagem +=
-      "\n\nEndereço para entrega: " +
-      endereco;
-
-  } else {
-
-    mensagem +=
-      "\n\nEndereço para entrega: ";
-
-  }
-
-  const url =
-    "https://wa.me/5516996194221?text=" +
-    encodeURIComponent(mensagem);
-
-  window.open(url, "_blank");
-
-}
-
-carregarProdutos();
-
-atualizarPedido();
-
+renderCategories();
+renderProducts();
+updateCart();
 </script>
-
 </body>
-                       </html>
+</html>
